@@ -224,32 +224,12 @@ const PizzaBuilder = () => {
       name: pizzaName,
       price: totalPrice,
       description: pizzaDescription,
-      image: '/images/custom-pizza.jpg',
+      image: '/images/Build-Your-Perfect-Pizza.jpg',
       category: 'pizza'
     });
 
-    // Show success message and redirect
-    const confirmed = window.confirm(
-      `🍕 Your delicious ${pizzaName} has been added to cart!\n\n` +
-      `Total: $${totalPrice.toFixed(2)}\n\n` +
-      `Would you like to:\n` +
-      `• OK - Continue shopping (Menu)\n` +
-      `• Cancel - Build another pizza`
-    );
-
-    if (confirmed) {
-      navigate('/menu');
-    } else {
-      // Reset pizza builder for new pizza
-      setPizza({
-        size: 'medium',
-        crust: 'regular',
-        sauce: 'tomato',
-        cheese: 'mozzarella',
-        toppings: []
-      });
-      setCurrentStep(0);
-    }
+    // Pizza added successfully - redirect to menu
+    navigate('/menu');
   };
 
   return (

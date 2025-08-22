@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaLeaf, FaBreadSlice, FaStar, FaUtensils, FaHeart } from 'react-icons/fa';
+import { FaLeaf, FaStar, FaAward, FaUsers } from 'react-icons/fa';
 
 const About = () => {
   return (
@@ -80,7 +80,7 @@ const About = () => {
         <div className="col-md-4">
           <div className="card h-100 border-0 shadow-sm">
             <div className="card-body text-center">
-              <div className="bg-success bg-opacity-15 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '80px', height: '80px'}}>
+              <div className="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 shadow-sm" style={{width: '80px', height: '80px', border: '2px solid #e9ecef'}}>
                 <FaLeaf className="text-success" size={32} />
               </div>
               <h4>Fresh Ingredients</h4>
@@ -91,10 +91,10 @@ const About = () => {
         <div className="col-md-4">
           <div className="card h-100 border-0 shadow-sm">
             <div className="card-body text-center">
-              <div className="bg-warning bg-opacity-15 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '80px', height: '80px'}}>
-                <FaUtensils className="text-warning" size={32} />
+              <div className="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 shadow-sm" style={{width: '80px', height: '80px', border: '2px solid #e9ecef'}}>
+                <FaAward className="text-warning" size={32} />
               </div>
-              <h4>Traditional Recipes</h4>
+              <h4>Quality Excellence</h4>
               <p>Our dishes are prepared following traditional Italian recipes passed down through generations.</p>
             </div>
           </div>
@@ -102,11 +102,11 @@ const About = () => {
         <div className="col-md-4">
           <div className="card h-100 border-0 shadow-sm">
             <div className="card-body text-center">
-              <div className="bg-info bg-opacity-15 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '80px', height: '80px'}}>
-                <FaBreadSlice className="text-info" size={32} />
+              <div className="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 shadow-sm" style={{width: '80px', height: '80px', border: '2px solid #e9ecef'}}>
+                <FaUsers className="text-primary" size={32} />
               </div>
-              <h4>Dietary Options</h4>
-              <p>We offer a variety of vegetarian, vegan, and gluten-free options to accommodate all guests.</p>
+              <h4>Customer Service</h4>
+              <p>We offer exceptional service and a variety of options to accommodate all our valued guests.</p>
             </div>
           </div>
         </div>

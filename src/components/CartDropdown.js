@@ -9,6 +9,12 @@ import menuData from '../data/menuData';
 const getImageForCartItem = (cartItem) => {
   if (!cartItem) return null;
 
+  // Special handling for custom pizza
+  if (cartItem.id && cartItem.id.startsWith('custom-pizza-')) {
+    console.log(`🍕 Using custom pizza image for ${cartItem.name}`);
+    return '/images/Build-Your-Perfect-Pizza.jpg';
+  }
+
   // First check if item already has a valid local image
   if (cartItem.image && cartItem.image.startsWith('/images/')) {
     console.log(`✅ Using existing image for ${cartItem.name}: ${cartItem.image}`);
@@ -33,6 +39,12 @@ const getImageForCartItem = (cartItem) => {
     console.log(`⚠️ No image found for cart item: ${cartItem.name} (id: ${cartItem.id})`);
   } catch (e) {
     console.error('❌ Error finding cart item image:', e);
+  }
+
+  // Fallback for custom pizza if not caught above
+  if (cartItem.name && cartItem.name.includes('Custom') && cartItem.name.includes('Pizza')) {
+    console.log(`🍕 Using fallback custom pizza image for ${cartItem.name}`);
+    return '/images/Build-Your-Perfect-Pizza.jpg';
   }
 
   return null;
@@ -317,6 +329,9 @@ const CartDropdown = () => {
                             console.log(`Retry with: ${newSrc}`);
                             if (newSrc && newSrc !== e.target.src) {
                               e.target.src = newSrc;
+                            } else if (item.id && item.id.startsWith('custom-pizza-')) {
+                              // Ensure custom pizza always gets the right image
+                              e.target.src = '/images/Build-Your-Perfect-Pizza.jpg';
                             } else {
                               // Hide the broken image
                               e.target.style.display = 'none';
@@ -352,17 +367,19 @@ const CartDropdown = () => {
                         </div>
                       </div>
 
-                      <div className="text-end">
+                      <div className="text-center">
                         <div className="fw-bold mb-2">
                           ${(item.price * item.quantity).toFixed(2)}
                         </div>
-                        <button
-                          className="btn btn-sm btn-outline-danger rounded-circle"
-                          style={{ width: '30px', height: '30px', padding: '0' }}
-                          onClick={() => removeFromCart(item.id)}
-                        >
-                          <FaTrash style={{ fontSize: '10px' }} />
-                        </button>
+                        <div className="d-flex justify-content-center">
+                          <button
+                            className="btn btn-sm btn-outline-danger rounded-circle"
+                            style={{ width: '30px', height: '30px', padding: '0' }}
+                            onClick={() => removeFromCart(item.id)}
+                          >
+                            <FaTrash style={{ fontSize: '10px' }} />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>

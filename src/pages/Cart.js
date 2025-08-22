@@ -9,6 +9,11 @@ import menuData from '../data/menuData';
 const getImageForCartItem = (cartItem) => {
   if (!cartItem) return null;
 
+  // Special handling for custom pizza
+  if (cartItem.id && cartItem.id.startsWith('custom-pizza-')) {
+    return '/images/Build-Your-Perfect-Pizza.jpg';
+  }
+
   // First check if item already has a valid local image
   if (cartItem.image && cartItem.image.startsWith('/images/')) {
     return cartItem.image;
@@ -29,6 +34,11 @@ const getImageForCartItem = (cartItem) => {
       }
     }
   } catch (_) {}
+
+  // Fallback for custom pizza if not caught above
+  if (cartItem.name && cartItem.name.includes('Custom') && cartItem.name.includes('Pizza')) {
+    return '/images/Build-Your-Perfect-Pizza.jpg';
+  }
 
   return null;
 };
@@ -114,7 +124,8 @@ const Cart = () => {
                     transition={{ delay: index * 0.1 }}
                     className={`p-4 ${index !== items.length - 1 ? 'border-bottom' : ''}`}
                   >
-                    <div className="row align-items-center">
+                    {/* Desktop Layout */}
+                    <div className="row align-items-center d-none d-md-flex">
                       <div className="col-md-2">
                         <img
                           src={getImageForCartItem(item)}
@@ -132,9 +143,11 @@ const Cart = () => {
                             const newSrc = getImageForCartItem(item);
                             if (newSrc && newSrc !== e.target.src) {
                               e.target.src = newSrc;
+                            } else if (item.id && item.id.startsWith('custom-pizza-')) {
+                              // Ensure custom pizza always gets the right image
+                              e.target.src = '/images/Build-Your-Perfect-Pizza.jpg';
                             }
                           }}
-                        />
                         />
                       </div>
 
@@ -144,7 +157,7 @@ const Cart = () => {
                       </div>
 
                       <div className="col-md-3">
-                        <div className="d-flex align-items-center gap-3">
+                        <div className="d-flex align-items-center justify-content-center gap-3">
                           <button
                             className="btn btn-outline-secondary rounded-circle"
                             style={{ width: '40px', height: '40px', padding: '0' }}
@@ -165,17 +178,88 @@ const Cart = () => {
                         </div>
                       </div>
 
-                      <div className="col-md-2 text-end">
-                        <div className="fw-bold fs-5 mb-2">
-                          ${(item.price * item.quantity).toFixed(2)}
+                      <div className="col-md-2">
+                        <div className="text-center">
+                          <div className="fw-bold fs-5 mb-2">
+                            ${(item.price * item.quantity).toFixed(2)}
+                          </div>
+                          <div className="d-flex justify-content-center">
+                            <button
+                              className="btn btn-outline-danger rounded-circle"
+                              style={{ width: '40px', height: '40px', padding: '0' }}
+                              onClick={() => removeFromCart(item.id)}
+                            >
+                              <FaTrash style={{ fontSize: '12px' }} />
+                            </button>
+                          </div>
                         </div>
-                        <button
-                          className="btn btn-outline-danger rounded-circle"
-                          style={{ width: '40px', height: '40px', padding: '0' }}
-                          onClick={() => removeFromCart(item.id)}
-                        >
-                          <FaTrash style={{ fontSize: '12px' }} />
-                        </button>
+                      </div>
+                    </div>
+
+                    {/* Mobile Layout */}
+                    <div className="d-md-none">
+                      <div className="d-flex align-items-center gap-3 mb-3">
+                        <img
+                          src={getImageForCartItem(item)}
+                          alt={item.name}
+                          className="rounded"
+                          style={{
+                            width: '60px',
+                            height: '60px',
+                            objectFit: 'cover',
+                            backgroundColor: '#f8f9fa'
+                          }}
+                          onError={(e) => {
+                            console.error(`❌ Failed to load image for ${item.name}: ${e.target.src}`);
+                            // Force reload with a different approach
+                            const newSrc = getImageForCartItem(item);
+                            if (newSrc && newSrc !== e.target.src) {
+                              e.target.src = newSrc;
+                            } else if (item.id && item.id.startsWith('custom-pizza-')) {
+                              // Ensure custom pizza always gets the right image
+                              e.target.src = '/images/Build-Your-Perfect-Pizza.jpg';
+                            }
+                          }}
+                        />
+                        <div className="flex-grow-1">
+                          <h6 className="mb-1">{item.name}</h6>
+                          <p className="text-muted mb-0 small">${item.price.toFixed(2)} each</p>
+                        </div>
+                      </div>
+
+                      <div className="d-flex align-items-center justify-content-between">
+                        <div className="d-flex align-items-center gap-2">
+                          <button
+                            className="btn btn-outline-secondary rounded-circle"
+                            style={{ width: '35px', height: '35px', padding: '0' }}
+                            onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
+                          >
+                            <FaMinus style={{ fontSize: '10px' }} />
+                          </button>
+
+                          <span className="fw-bold px-3">{item.quantity}</span>
+
+                          <button
+                            className="btn btn-outline-secondary rounded-circle"
+                            style={{ width: '35px', height: '35px', padding: '0' }}
+                            onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
+                          >
+                            <FaPlus style={{ fontSize: '10px' }} />
+                          </button>
+                        </div>
+
+                        <div className="text-center">
+                          <div className="fw-bold mb-1">
+                            ${(item.price * item.quantity).toFixed(2)}
+                          </div>
+                          <button
+                            className="btn btn-outline-danger rounded-circle"
+                            style={{ width: '35px', height: '35px', padding: '0' }}
+                            onClick={() => removeFromCart(item.id)}
+                          >
+                            <FaTrash style={{ fontSize: '10px' }} />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </motion.div>

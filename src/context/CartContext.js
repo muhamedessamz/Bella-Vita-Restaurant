@@ -7,6 +7,16 @@ const CartContext = createContext();
 const normalizeCartItem = (item) => {
   if (!item) return item;
 
+  // Special handling for custom pizza
+  if (item.id && item.id.startsWith('custom-pizza-')) {
+    return { ...item, image: '/images/Build-Your-Perfect-Pizza.jpg' };
+  }
+
+  // Fallback for custom pizza by name
+  if (item.name && item.name.includes('Custom') && item.name.includes('Pizza')) {
+    return { ...item, image: '/images/Build-Your-Perfect-Pizza.jpg' };
+  }
+
   // Always try to get the latest image from menu data
   try {
     for (const cat of menuData?.categories || []) {
