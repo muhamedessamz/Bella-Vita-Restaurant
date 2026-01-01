@@ -276,13 +276,6 @@ This project is licensed under the MIT License.
 - GitHub: [@muhamedessamz](https://github.com/muhamedessamz)
 - LinkedIn: [Mohamed Essam](https://www.linkedin.com/in/mohamedessamz/)
 
-## 🙏 Acknowledgments
-
-- Bootstrap for the UI framework
-- React Icons for the icon library
-- Framer Motion for animations
-- All contributors and supporters
-
 ---
 
 **Made with ❤️ Mohamed Essam**
