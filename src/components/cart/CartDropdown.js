@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { FaShoppingCart, FaTrash, FaPlus, FaMinus } from 'react-icons/fa';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
 
-import menuData from '../data/menuData';
+import menuData from '../../data/menuData';
 
 // Helper to find a reliable image for a cart item from menu data
 const getImageForCartItem = (cartItem) => {

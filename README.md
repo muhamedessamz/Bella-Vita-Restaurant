@@ -1,70 +1,288 @@
-# Getting Started with Create React App
+# 🍝 Bella Vita Restaurant
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Authentic Italian Cuisine with International Influences
 
-## Available Scripts
+[![React](https://img.shields.io/badge/React-18.2.0-blue.svg)](https://reactjs.org/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3.3-purple.svg)](https://getbootstrap.com/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-In the project directory, you can run:
+## 📋 Table of Contents
+
+- [About](#about)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Available Scripts](#available-scripts)
+- [Documentation](#documentation)
+- [Environment Variables](#environment-variables)
+- [Contributing](#contributing)
+
+## 🎯 About
+
+Bella Vita is a modern, responsive restaurant website built with React. It offers a seamless user experience for browsing menus, making reservations, and ordering food online. The application features a beautiful Italian-inspired design with smooth animations and an intuitive interface.
+
+## ✨ Features
+
+- 🍕 **Interactive Menu** - Browse our extensive menu with filtering and search capabilities
+- 🛒 **Shopping Cart** - Add items to cart with real-time updates
+- 🍕 **Pizza Builder** - Create your custom pizza with our interactive builder
+- 📅 **Reservations** - Book a table online with our reservation system
+- 📱 **Responsive Design** - Fully responsive across all devices
+- 🎨 **Modern UI/UX** - Beautiful animations and smooth transitions
+- 🔍 **Advanced Search** - Search by dish name, ingredients, or dietary preferences
+- 🏷️ **Dietary Filters** - Filter menu items by dietary requirements (vegetarian, vegan, gluten-free, etc.)
+- 💾 **Persistent Cart** - Cart data saved in local storage
+- 🌐 **Multi-page Application** - Built with React Router for smooth navigation
+
+## 🛠️ Tech Stack
+
+### Core
+- **React** 18.2.0 - UI library
+- **React Router DOM** 6.18.0 - Client-side routing
+- **React Hook Form** 7.49.2 - Form management
+
+### Styling
+- **Bootstrap** 5.3.3 - CSS framework
+- **Framer Motion** 10.18.0 - Animation library
+- **Custom CSS** - Additional styling
+
+### UI Components
+- **React Icons** 5.0.1 - Icon library
+- **React Toastify** 10.0.4 - Toast notifications
+
+### Development
+- **React Scripts** 5.0.1 - Build tooling
+- **Testing Library** - Unit testing
+
+## 📁 Project Structure
+
+```
+Bella-Vita-Restaurant/
+├── public/
+│   ├── images/              # Static images (47 images)
+│   ├── index.html           # HTML template
+│   ├── manifest.json        # PWA manifest
+│   └── robots.txt           # SEO robots file
+│
+├── src/
+│   ├── components/          # React components
+│   │   ├── layout/          # Layout components
+│   │   │   ├── Navbar.js
+│   │   │   ├── Footer.js
+│   │   │   ├── Layout.js
+│   │   │   └── index.js
+│   │   ├── cart/            # Cart components
+│   │   │   ├── CartDropdown.js
+│   │   │   └── index.js
+│   │   ├── common/          # Shared components
+│   │   │   ├── ErrorBoundary.js
+│   │   │   └── index.js
+│   │   ├── home/            # Home page components
+│   │   │   ├── HeroSection.js
+│   │   │   ├── FeaturedDishes.js
+│   │   │   ├── PizzaBuilderTeaser.js
+│   │   │   ├── WhyChooseUs.js
+│   │   │   ├── Testimonials.js
+│   │   │   ├── ContactCTA.js
+│   │   │   └── Newsletter.js
+│   │   └── menu/            # Menu components
+│   │       └── MenuCategory.js
+│   │
+│   ├── pages/               # Page components
+│   │   ├── Home.js
+│   │   ├── Menu.js
+│   │   ├── Cart.js
+│   │   ├── OnlineOrder.js
+│   │   ├── Reservations.js
+│   │   ├── About.js
+│   │   ├── Contact.js
+│   │   ├── PizzaBuilder.js
+│   │   ├── PrivacyPolicy.js
+│   │   ├── TermsOfService.js
+│   │   └── NotFound.js
+│   │
+│   ├── context/             # React Context
+│   │   └── CartContext.js   # Shopping cart state management
+│   │
+│   ├── data/                # Static data
+│   │   └── menuData.js      # Menu items and categories
+│   │
+│   ├── styles/              # CSS files
+│   │   ├── components/      # Component-specific styles
+│   │   ├── pages/           # Page-specific styles
+│   │   │   └── Menu.css
+│   │   ├── ContentPagesFixes.css
+│   │   └── MenuPage.css
+│   │
+│   ├── utils/               # Utility functions
+│   │   └── dietaryUtils.js  # Dietary icon helpers
+│   │
+│   ├── constants/           # Application constants
+│   │   └── index.js         # Shared constants
+│   │
+│   ├── App.js               # Main App component
+│   ├── App.css              # App styles
+│   ├── index.js             # Entry point
+│   └── index.css            # Global styles
+│
+├── .gitignore               # Git ignore rules
+├── package.json             # Dependencies and scripts
+├── package-lock.json        # Dependency lock file
+└── README.md                # This file
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js** (v14 or higher)
+- **npm** (v6 or higher)
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/muhamedessamz/Bella-Vita-Restaurant.git
+   cd Bella-Vita-Restaurant
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm start
+   ```
+
+4. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 📜 Available Scripts
 
 ### `npm start`
-
-Runs the app in the development mode.\
+Runs the app in development mode.  
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
+The page will reload when you make changes.  
 You may also see any lint errors in the console.
 
 ### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in interactive watch mode.
 
 ### `npm run build`
-
-Builds the app for production to the `build` folder.\
+Builds the app for production to the `build` folder.  
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
+The build is minified and the filenames include the hashes.  
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `npm run lint`
+Runs ESLint to check code quality.
 
-### `npm run eject`
+## � Documentation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+For comprehensive documentation, please refer to the following files in the `docs/` folder:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 📖 [Complete Documentation](docs/DOCUMENTATION.md)
+Full technical documentation covering:
+- Project architecture
+- Component documentation
+- State management
+- Routing
+- Styling guide
+- API integration
+- Deployment guide
+- Best practices
+- Troubleshooting
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 🔌 [API Specifications](docs/API_SPECIFICATIONS.md)
+Complete API documentation for backend implementation:
+- Authentication APIs
+- User Management
+- Menu Management
+- Order Management
+- Reservation APIs
+- Payment APIs
+- Admin Dashboard APIs
+- Analytics APIs
+- And more...
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 🚀 [Future Improvements](docs/FUTURE_IMPROVEMENTS.md)
+Comprehensive list of planned features and enhancements:
+- Critical missing features
+- High priority improvements
+- Medium priority features
+- Technical improvements
+- UI/UX enhancements
+- Security enhancements
+- Future integrations
+- Roadmap suggestions
 
-## Learn More
+## �🔐 Environment Variables
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Create a `.env` file in the root directory (optional):
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```env
+REACT_APP_API_URL=your_api_url_here
+REACT_APP_SITE_NAME=Bella Vita
+```
 
-### Code Splitting
+## 🎨 Key Features Explained
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Shopping Cart
+- Persistent cart using localStorage
+- Real-time cart updates
+- Quantity management
+- Price calculations
 
-### Analyzing the Bundle Size
+### Menu System
+- Dynamic filtering by category
+- Search functionality
+- Dietary preference filters
+- Responsive grid layout
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Pizza Builder
+- Interactive ingredient selection
+- Real-time price calculation
+- Custom pizza creation
+- Visual feedback
 
-### Making a Progressive Web App
+### Reservations
+- Date and time selection
+- Party size options
+- Special requests
+- Form validation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🤝 Contributing
 
-### Advanced Configuration
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-### Deployment
+## 📝 License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+This project is licensed under the MIT License.
 
-### `npm run build` fails to minify
+## 👨‍💻 Author
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Mohamed Essam**
+- GitHub: [@muhamedessamz](https://github.com/muhamedessamz)
+- LinkedIn: [Mohamed Essam](https://www.linkedin.com/in/mohamedessamz/)
+
+## 🙏 Acknowledgments
+
+- Bootstrap for the UI framework
+- React Icons for the icon library
+- Framer Motion for animations
+- All contributors and supporters
+
+---
+
+**Made with ❤️ and 🍝**

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import CartDropdown from './CartDropdown';
+import CartDropdown from '../cart/CartDropdown';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
