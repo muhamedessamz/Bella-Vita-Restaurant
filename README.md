@@ -285,4 +285,4 @@ This project is licensed under the MIT License.
 
 ---
 
-**Made with ❤️ and 🍝**
+**Made with ❤️ Mohamed Essam**
