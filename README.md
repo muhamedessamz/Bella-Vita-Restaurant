@@ -20,7 +20,7 @@
 
 ## 🎯 About
 
-Bella Vita is a modern, responsive restaurant website built with React. It offers a seamless user experience for browsing menus, making reservations, and ordering food online. The application features a beautiful Italian-inspired design with smooth animations and an intuitive interface.
+Bella Vita is a modern, responsive restaurant website built with React. It offers a seamless user experience for browsing menus, making reservations, and ordering food online. The application features a beautiful Italian-inspired design with smooth animations and an intuitive interface
 
 ## ✨ Features
 
