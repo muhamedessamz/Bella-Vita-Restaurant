@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaLeaf, FaPepperHot, FaSeedling, FaBreadSlice, FaFish, FaCheese } from 'react-icons/fa';
 
 const FeaturedDishes = () => {
   const dishes = [
@@ -38,25 +37,6 @@ const FeaturedDishes = () => {
     }
   ];
 
-  const getDietaryIcon = (type) => {
-    switch (type) {
-      case 'vegetarian':
-        return <FaLeaf className="text-success" title="Vegetarian" />;
-      case 'vegan':
-        return <FaSeedling className="text-success" title="Vegan" />;
-      case 'gluten-free':
-        return <FaBreadSlice className="text-warning" title="Gluten Free" />;
-      case 'spicy':
-        return <FaPepperHot className="text-danger" title="Spicy" />;
-      case 'pescatarian':
-        return <FaFish className="text-info" title="Pescatarian" />;
-      case 'dairy-free':
-        return <FaCheese className="text-muted" title="Dairy Free" />;
-      default:
-        return null;
-    }
-  };
-
   return (
     <section className="py-5" style={{
       background: 'linear-gradient(135deg, #2c3e50 0%, #34495e 100%)',
@@ -87,26 +67,26 @@ const FeaturedDishes = () => {
             Experience the taste of Italy with our chef's special selection
           </p>
         </div>
-        
+
         <div className="row g-4 justify-content-center">
           {dishes.map((dish) => (
             <div key={dish.id} className="col-md-6 col-lg-3 d-flex justify-content-center">
               <div className="card h-100 border-0 shadow-lg overflow-hidden"
-                   style={{
-                     transition: 'all 0.3s ease',
-                     borderRadius: '15px',
-                     backgroundColor: 'white',
-                     maxWidth: '300px',
-                     width: '100%'
-                   }}
-                   onMouseEnter={(e) => {
-                     e.currentTarget.style.transform = 'translateY(-8px)';
-                     e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.2)';
-                   }}
-                   onMouseLeave={(e) => {
-                     e.currentTarget.style.transform = 'translateY(0)';
-                     e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.15)';
-                   }}>
+                style={{
+                  transition: 'all 0.3s ease',
+                  borderRadius: '15px',
+                  backgroundColor: 'white',
+                  maxWidth: '300px',
+                  width: '100%'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-8px)';
+                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.2)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.15)';
+                }}>
                 <div
                   className="dish-image position-relative"
                   style={{
@@ -154,32 +134,32 @@ const FeaturedDishes = () => {
 
         <div className="text-center mt-5">
           <Link to="/menu" className="btn btn-lg px-5 py-3"
-                style={{
-                  backgroundColor: 'white',
-                  borderColor: 'white',
-                  color: '#2c3e50',
-                  borderRadius: '50px',
-                  fontWeight: '600',
-                  fontSize: '1.1rem',
-                  textDecoration: 'none',
-                  transition: 'all 0.3s ease',
-                  borderWidth: '2px',
-                  boxShadow: '0 4px 15px rgba(255,255,255,0.3)'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = '#e74c3c';
-                  e.target.style.borderColor = '#e74c3c';
-                  e.target.style.color = 'white';
-                  e.target.style.transform = 'translateY(-2px)';
-                  e.target.style.boxShadow = '0 8px 25px rgba(231, 76, 60, 0.4)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = 'white';
-                  e.target.style.borderColor = 'white';
-                  e.target.style.color = '#2c3e50';
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = '0 4px 15px rgba(255,255,255,0.3)';
-                }}>
+            style={{
+              backgroundColor: 'white',
+              borderColor: 'white',
+              color: '#2c3e50',
+              borderRadius: '50px',
+              fontWeight: '600',
+              fontSize: '1.1rem',
+              textDecoration: 'none',
+              transition: 'all 0.3s ease',
+              borderWidth: '2px',
+              boxShadow: '0 4px 15px rgba(255,255,255,0.3)'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = '#e74c3c';
+              e.target.style.borderColor = '#e74c3c';
+              e.target.style.color = 'white';
+              e.target.style.transform = 'translateY(-2px)';
+              e.target.style.boxShadow = '0 8px 25px rgba(231, 76, 60, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = 'white';
+              e.target.style.borderColor = 'white';
+              e.target.style.color = '#2c3e50';
+              e.target.style.transform = 'translateY(0)';
+              e.target.style.boxShadow = '0 4px 15px rgba(255,255,255,0.3)';
+            }}>
             View Full Menu
           </Link>
         </div>
