@@ -30,3 +30,7 @@ yarn-error.log*
 
 # OS
 Thumbs.db
+
+# Documentation (not to be uploaded)
+CONTRIBUTING.md
+CHANGELOG.md
