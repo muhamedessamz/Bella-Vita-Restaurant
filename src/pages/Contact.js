@@ -88,7 +88,7 @@ const Contact = () => {
                   <div className="text-center mb-4 p-3 bg-white rounded shadow-sm">
                     <FaMapMarkerAlt className="text-primary mb-2" size={24} />
                     <h6 className="fw-semibold mb-2 text-primary">Address</h6>
-                    <p className="text-muted mb-0 small">123 Restaurant Street<br/>Riyadh, Saudi Arabia</p>
+                    <p className="text-muted mb-0 small">123 Restaurant Street<br />Riyadh, Saudi Arabia</p>
                   </div>
 
                   <div className="text-center mb-4 p-3 bg-white rounded shadow-sm">
@@ -124,21 +124,21 @@ const Contact = () => {
                 <div className="text-center p-3 bg-white rounded shadow-sm">
                   <h6 className="fw-semibold mb-3 text-primary">Follow Us</h6>
                   <div className="d-flex justify-content-center gap-2">
-                    <a href="#" className="btn btn-outline-primary btn-sm rounded-circle p-2"
-                       style={{ width: '40px', height: '40px' }}
-                       aria-label="Facebook">
+                    <button type="button" className="btn btn-outline-primary btn-sm rounded-circle p-2"
+                      style={{ width: '40px', height: '40px' }}
+                      aria-label="Facebook">
                       <FaFacebook size={16} />
-                    </a>
-                    <a href="#" className="btn btn-outline-danger btn-sm rounded-circle p-2"
-                       style={{ width: '40px', height: '40px' }}
-                       aria-label="Instagram">
+                    </button>
+                    <button type="button" className="btn btn-outline-danger btn-sm rounded-circle p-2"
+                      style={{ width: '40px', height: '40px' }}
+                      aria-label="Instagram">
                       <FaInstagram size={16} />
-                    </a>
-                    <a href="#" className="btn btn-outline-info btn-sm rounded-circle p-2"
-                       style={{ width: '40px', height: '40px' }}
-                       aria-label="Twitter">
+                    </button>
+                    <button type="button" className="btn btn-outline-info btn-sm rounded-circle p-2"
+                      style={{ width: '40px', height: '40px' }}
+                      aria-label="Twitter">
                       <FaTwitter size={16} />
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -150,12 +150,12 @@ const Contact = () => {
                   fontFamily: "'Playfair Display', serif",
                   color: '#2c3e50'
                 }}>Send Us a Message</h3>
-                
+
                 {submitted ? (
                   <div className="text-center py-4">
                     <div className="text-success mb-3">
                       <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20 6L9 17L4 12" stroke="#28a745" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M20 6L9 17L4 12" stroke="#28a745" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </div>
                     <h4 className="text-success mb-2">Message Sent!</h4>
@@ -301,7 +301,7 @@ const Contact = () => {
                             style={{ fontSize: '11px', padding: '4px 8px' }}
                           >
                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z" fill="currentColor"/>
+                              <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z" fill="currentColor" />
                             </svg>
                             Route
                           </button>

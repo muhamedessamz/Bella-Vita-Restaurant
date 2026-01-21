@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { FaQuoteLeft, FaStar, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const Testimonials = () => {
@@ -44,26 +44,22 @@ const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  const nextTestimonial = () => {
+  const nextTestimonial = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1));
-  };
+  }, [testimonials.length]);
 
   const prevTestimonial = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1));
   };
 
-  const goToTestimonial = (index) => {
-    setCurrentIndex(index);
-  };
-
   // Auto-advance testimonials
   useEffect(() => {
     if (!isAutoPlaying) return;
-    
+
     const timer = setInterval(() => {
       nextTestimonial();
     }, 5000);
-    
+
     return () => clearInterval(timer);
   }, [currentIndex, isAutoPlaying, nextTestimonial]);
 
@@ -82,13 +78,13 @@ const Testimonials = () => {
 
         <div className="row justify-content-center">
           <div className="col-lg-8">
-            <div 
+            <div
               className="card border-0 shadow-sm p-4 p-lg-5"
               onMouseEnter={() => setIsAutoPlaying(false)}
               onMouseLeave={() => setIsAutoPlaying(true)}
             >
               <div className="text-center mb-4">
-                <div 
+                <div
                   className="mx-auto mb-3 d-flex align-items-center justify-content-center text-white fw-bold"
                   style={{
                     width: '80px',
@@ -102,25 +98,25 @@ const Testimonials = () => {
                 </div>
                 <div className="d-flex justify-content-center mb-2">
                   {[...Array(5)].map((_, i) => (
-                    <FaStar 
-                      key={i} 
-                      className={i < currentTestimonial.rating ? 'text-warning' : 'text-muted'} 
+                    <FaStar
+                      key={i}
+                      className={i < currentTestimonial.rating ? 'text-warning' : 'text-muted'}
                     />
                   ))}
                 </div>
                 <h3 className="h5 fw-bold mb-1">{currentTestimonial.name}</h3>
                 <p className="text-muted small">{currentTestimonial.role}</p>
               </div>
-              
+
               <div className="text-center px-lg-5 position-relative">
                 <FaQuoteLeft className="text-muted mb-3" style={{ opacity: 0.1, fontSize: '3rem' }} />
                 <p className="lead mb-4 position-relative">
                   <FaQuoteLeft className="position-absolute" style={{ top: '-10px', left: '-20px', opacity: 0.2 }} />
                   {currentTestimonial.content}
                 </p>
-                
 
-                
+
+
                 <div className="d-flex justify-content-center gap-3 d-block d-sm-flex">
                   <button
                     className="btn rounded-circle d-flex align-items-center justify-content-center me-2 me-sm-0"
@@ -186,7 +182,7 @@ const Testimonials = () => {
           </div>
         </div>
       </div>
-      
+
       <style jsx>{`
         .card {
           transition: all 0.3s ease;

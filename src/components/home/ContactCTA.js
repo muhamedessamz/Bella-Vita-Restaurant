@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaArrowRight } from 'react-icons/fa';
+import { FaEnvelope, FaArrowRight } from 'react-icons/fa';
 
 const ContactCTA = () => {
   return (
@@ -22,11 +22,11 @@ const ContactCTA = () => {
               {/* Logo */}
               <div className="mb-4">
                 <div className="bg-white rounded-circle d-inline-flex align-items-center justify-content-center shadow-lg"
-                     style={{
-                       width: '100px',
-                       height: '100px',
-                       border: '3px solid rgba(255,255,255,0.9)'
-                     }}>
+                  style={{
+                    width: '100px',
+                    height: '100px',
+                    border: '3px solid rgba(255,255,255,0.9)'
+                  }}>
                   <img
                     src="/images/logo.png"
                     alt="Bella Vita Logo"
