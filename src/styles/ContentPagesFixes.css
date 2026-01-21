@@ -1,0 +1,157 @@
+/* Add proper spacing from navbar with matching background */
+.privacy-policy-page,
+.terms-of-service-page {
+  padding-top: 120px !important;
+  position: relative;
+}
+
+/* Remove any potential borders or lines */
+.privacy-policy-page section:first-child,
+.terms-of-service-page section:first-child {
+  border-top: none !important;
+  margin-top: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.privacy-policy-page::before,
+.terms-of-service-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  z-index: -1;
+  border: none;
+  outline: none;
+}
+
+/* Mobile specific fixes to remove white line */
+@media (max-width: 768px) {
+  .privacy-policy-page::before,
+  .terms-of-service-page::before {
+    height: 122px; /* Slightly taller to ensure no gap */
+    margin-top: -2px; /* Overlap by 2px */
+    top: -1px; /* Move up slightly */
+  }
+
+  .privacy-policy-page section:first-child,
+  .terms-of-service-page section:first-child {
+    margin-top: -2px !important;
+    border-top: none !important;
+    box-shadow: none !important;
+    position: relative;
+    z-index: 2;
+  }
+
+  .privacy-policy-page,
+  .terms-of-service-page {
+    border-top: none !important;
+    outline: none !important;
+    overflow-x: hidden;
+  }
+
+  /* Ensure no gaps in the container */
+  .privacy-policy-page .container,
+  .terms-of-service-page .container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+}
+
+/* Fix heading and text contrast on dark hero sections */
+.privacy-policy-page section.py-5:first-child h1,
+.privacy-policy-page section.py-5:first-child p,
+.terms-of-service-page section.py-5:first-child h1,
+.terms-of-service-page section.py-5:first-child p {
+  color: #ffffff !important;
+}
+
+/* Ensure section titles and important headings have strong contrast */
+.privacy-policy-page h2,
+.terms-of-service-page h2 {
+  color: #2c3e50 !important;
+}
+
+/* Privacy Policy Contact Us section - make text white and centered */
+.privacy-policy-page .bg-primary.bg-opacity-10 {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%) !important;
+  text-align: center !important;
+  padding: 2rem !important;
+  border-radius: 15px !important;
+}
+
+.privacy-policy-page .bg-primary.bg-opacity-10 p,
+.privacy-policy-page .bg-primary.bg-opacity-10 span,
+.privacy-policy-page .bg-primary.bg-opacity-10 h5,
+.privacy-policy-page .bg-primary.bg-opacity-10 .text-primary {
+  color: #ffffff !important;
+}
+
+.privacy-policy-page .bg-primary.bg-opacity-10 .row {
+  justify-content: center !important;
+}
+
+.privacy-policy-page .bg-primary.bg-opacity-10 .d-flex {
+  justify-content: center !important;
+}
+
+/* Contact page specific: improve contrast for hero title and footer sections */
+.contact-page h1.display-4,
+.contact-page .section-title,
+.contact-page h5,
+.contact-page h6 {
+  color: #2c3e50 !important;
+}
+
+/* Links and small muted text on light backgrounds */
+.contact-page .text-muted { color: #6c757d !important; }
+
+/* Buttons consistent branding */
+.contact-page .btn-outline-primary { color: #e74c3c; border-color: #e74c3c; }
+.contact-page .btn-outline-primary:hover { background-color: #e74c3c; color: #fff; }
+
+/* Spacing tweaks for Contact Us bottom sections */
+.contact-page .map-container { margin-top: 8px; }
+
+/* Terms: make the info boxes text readable on colored backgrounds */
+.terms-of-service-page .bg-primary.bg-opacity-10,
+.terms-of-service-page .bg-info.bg-opacity-10 {
+  color: #1f2d3a;
+}
+.terms-of-service-page .bg-primary.bg-opacity-10 p,
+.terms-of-service-page .bg-info.bg-opacity-10 p {
+  color: #1f2d3a !important;
+}
+
+/* Make "Changes to Terms" section white text on dark background */
+.terms-of-service-page .bg-primary.bg-opacity-10 {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%) !important;
+  color: #ffffff !important;
+  border-radius: 15px !important;
+}
+
+.terms-of-service-page .bg-primary.bg-opacity-10 h2,
+.terms-of-service-page .bg-primary.bg-opacity-10 p {
+  color: #ffffff !important;
+}
+
+/* Ensure other headings and paragraphs are readable */
+.terms-of-service-page h2,
+.terms-of-service-page p {
+  color: #2c3e50;
+}
+
+/* Improve readability for any text placed over gradients by default */
+.privacy-policy-page [style*="linear-gradient"],
+.terms-of-service-page [style*="linear-gradient"] {
+  color: #fff !important;
+}
+

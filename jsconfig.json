@@ -1,0 +1,50 @@
+{
+    "compilerOptions": {
+        "baseUrl": "src",
+        "paths": {
+            "@components/*": [
+                "components/*"
+            ],
+            "@components/layout/*": [
+                "components/layout/*"
+            ],
+            "@components/cart/*": [
+                "components/cart/*"
+            ],
+            "@components/common/*": [
+                "components/common/*"
+            ],
+            "@components/home/*": [
+                "components/home/*"
+            ],
+            "@components/menu/*": [
+                "components/menu/*"
+            ],
+            "@pages/*": [
+                "pages/*"
+            ],
+            "@styles/*": [
+                "styles/*"
+            ],
+            "@utils/*": [
+                "utils/*"
+            ],
+            "@context/*": [
+                "context/*"
+            ],
+            "@data/*": [
+                "data/*"
+            ],
+            "@constants/*": [
+                "constants/*"
+            ]
+        }
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "build"
+    ]
+}
