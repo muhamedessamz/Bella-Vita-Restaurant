@@ -1,4 +1,4 @@
-import { FaLeaf, FaPepperHot, FaBreadSlice, FaFish, FaCheese, FaSeedling, FaRegSnowflake } from 'react-icons/fa';
+import { FaLeaf, FaPepperHot, FaBreadSlice, FaCheese, FaSeedling } from 'react-icons/fa';
 
 export const DIETARY_ICONS = {
   vegetarian: {
@@ -32,9 +32,9 @@ export const getDietaryIcon = (type, size = 16) => {
   const IconComponent = DIETARY_ICONS[type]?.icon;
   const color = DIETARY_ICONS[type]?.color || 'secondary';
   const label = DIETARY_ICONS[type]?.label || type;
-  
+
   return IconComponent ? (
-    <span 
+    <span
       className={`d-inline-flex align-items-center text-${color} me-2`}
       title={label}
       style={{ fontSize: `${size}px` }}
@@ -46,7 +46,7 @@ export const getDietaryIcon = (type, size = 16) => {
 
 export const getDietaryBadges = (dietaryTypes, size = 14) => {
   if (!dietaryTypes || dietaryTypes.length === 0) return null;
-  
+
   return (
     <div className="d-flex flex-wrap gap-1 mt-1">
       {dietaryTypes.map((type) => (

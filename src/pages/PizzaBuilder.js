@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useCart } from '../context/CartContext';
 import { FaArrowLeft, FaPlus, FaMinus, FaShoppingCart, FaArrowRight, FaCheckCircle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const PizzaBuilder = () => {
   const { addToCart } = useCart();
   const navigate = useNavigate();
-  
+
   // Pizza configuration state
   const [pizza, setPizza] = useState({
     size: 'medium',
@@ -29,46 +29,46 @@ const PizzaBuilder = () => {
     { id: 'premium-toppings', title: 'Premium Items', icon: '⭐' }
   ];
 
-  // Pizza options
-  const sizes = [
+  // Pizza options - wrapped in useMemo to prevent recreation on every render
+  const sizes = useMemo(() => [
     { id: 'small', name: 'Small (10")', price: 12.99 },
     { id: 'medium', name: 'Medium (12")', price: 16.99 },
     { id: 'large', name: 'Large (14")', price: 20.99 },
     { id: 'xlarge', name: 'X-Large (16")', price: 24.99 }
-  ];
+  ], []);
 
-  const crusts = [
+  const crusts = useMemo(() => [
     { id: 'classic', name: 'Classic Hand-Tossed', price: 0 },
     { id: 'thin', name: 'Thin & Crispy', price: 0 },
     { id: 'thick', name: 'Thick Crust', price: 1.50 },
     { id: 'stuffed', name: 'Cheese Stuffed', price: 3.00 },
     { id: 'gluten-free', name: 'Gluten-Free', price: 2.50 }
-  ];
+  ], []);
 
-  const sauces = [
+  const sauces = useMemo(() => [
     { id: 'tomato', name: 'Classic Tomato', price: 0 },
     { id: 'white', name: 'White Sauce', price: 0.50 },
     { id: 'bbq', name: 'BBQ Sauce', price: 0.50 },
     { id: 'pesto', name: 'Pesto', price: 1.00 },
     { id: 'spicy', name: 'Spicy Arrabbiata', price: 0.50 }
-  ];
+  ], []);
 
-  const cheeses = [
+  const cheeses = useMemo(() => [
     { id: 'mozzarella', name: 'Mozzarella', price: 0 },
     { id: 'extra-mozzarella', name: 'Extra Mozzarella', price: 2.00 },
     { id: 'parmesan', name: 'Parmesan', price: 1.50 },
     { id: 'four-cheese', name: 'Four Cheese Blend', price: 3.00 },
     { id: 'vegan', name: 'Vegan Cheese', price: 2.50 }
-  ];
+  ], []);
 
-  const toppings = [
+  const toppings = useMemo(() => [
     // Meats
     { id: 'pepperoni', name: 'Pepperoni', price: 2.50, category: 'meat' },
     { id: 'sausage', name: 'Italian Sausage', price: 2.50, category: 'meat' },
     { id: 'ham', name: 'Ham', price: 2.00, category: 'meat' },
     { id: 'bacon', name: 'Bacon', price: 3.00, category: 'meat' },
     { id: 'chicken', name: 'Grilled Chicken', price: 3.50, category: 'meat' },
-    
+
     // Vegetables
     { id: 'mushrooms', name: 'Mushrooms', price: 1.50, category: 'vegetable' },
     { id: 'peppers', name: 'Bell Peppers', price: 1.50, category: 'vegetable' },
@@ -77,39 +77,39 @@ const PizzaBuilder = () => {
     { id: 'tomatoes', name: 'Fresh Tomatoes', price: 1.50, category: 'vegetable' },
     { id: 'spinach', name: 'Fresh Spinach', price: 2.00, category: 'vegetable' },
     { id: 'basil', name: 'Fresh Basil', price: 1.50, category: 'vegetable' },
-    
+
     // Premium
     { id: 'prosciutto', name: 'Prosciutto', price: 4.00, category: 'premium' },
     { id: 'truffle', name: 'Truffle Oil', price: 5.00, category: 'premium' },
     { id: 'arugula', name: 'Arugula', price: 2.50, category: 'premium' }
-  ];
+  ], []);
 
   // Calculate total price
   useEffect(() => {
     let price = 0;
-    
+
     // Base price from size
     const selectedSize = sizes.find(s => s.id === pizza.size);
     price += selectedSize?.price || 0;
-    
+
     // Crust price
     const selectedCrust = crusts.find(c => c.id === pizza.crust);
     price += selectedCrust?.price || 0;
-    
+
     // Sauce price
     const selectedSauce = sauces.find(s => s.id === pizza.sauce);
     price += selectedSauce?.price || 0;
-    
+
     // Cheese price
     const selectedCheese = cheeses.find(c => c.id === pizza.cheese);
     price += selectedCheese?.price || 0;
-    
+
     // Toppings price
     pizza.toppings.forEach(toppingId => {
       const topping = toppings.find(t => t.id === toppingId);
       price += topping?.price || 0;
     });
-    
+
     setTotalPrice(price);
   }, [pizza, sizes, crusts, sauces, cheeses, toppings]);
 
@@ -408,7 +408,7 @@ const PizzaBuilder = () => {
                           }}
                         />
                       ))}
-                      
+
                       {/* Toppings with realistic placement */}
                       {pizza.toppings.map((toppingId, index) => {
                         const topping = toppings.find(t => t.id === toppingId);
@@ -477,7 +477,7 @@ const PizzaBuilder = () => {
                       })}
                     </div>
                   </div>
-                  
+
                   {/* Pizza Summary */}
                   <div className="mt-4">
                     <h6 className="fw-bold mb-3">Your Selection:</h6>
@@ -491,7 +491,7 @@ const PizzaBuilder = () => {
                       )}
                     </ul>
                   </div>
-                  
+
                   <button
                     className="btn btn-primary btn-lg w-100 mt-4 d-flex align-items-center justify-content-center"
                     onClick={addPizzaToCart}
@@ -541,9 +541,8 @@ const PizzaBuilder = () => {
                       style={{ flex: 1 }}
                     >
                       <div
-                        className={`rounded-circle mx-auto mb-2 d-flex align-items-center justify-content-center ${
-                          index <= currentStep ? 'bg-primary text-white' : 'bg-light text-muted'
-                        }`}
+                        className={`rounded-circle mx-auto mb-2 d-flex align-items-center justify-content-center ${index <= currentStep ? 'bg-primary text-white' : 'bg-light text-muted'
+                          }`}
                         style={{ width: '40px', height: '40px', fontSize: '18px' }}
                       >
                         {step.icon}
@@ -560,166 +559,162 @@ const PizzaBuilder = () => {
               <div className="card border-0 shadow-sm mb-4">
                 <div className="card-body">
                   <h5 className="card-title mb-4">Choose Your Size</h5>
-                <div className="row g-3">
-                  {sizes.map(size => (
-                    <div key={size.id} className="col-md-6">
-                      <div
-                        className={`card h-100 cursor-pointer transition-all ${
-                          pizza.size === size.id
-                            ? 'border-primary shadow-lg'
-                            : 'border-light hover-shadow'
-                        }`}
-                        onClick={() => updatePizza('size', size.id)}
-                        style={{
-                          cursor: 'pointer',
-                          backgroundColor: pizza.size === size.id ? '#e3f2fd' : 'white',
-                          transform: pizza.size === size.id ? 'translateY(-2px)' : 'none',
-                          transition: 'all 0.3s ease'
-                        }}
-                      >
-                        <div className="card-body text-center">
-                          <h6 className={`card-title ${pizza.size === size.id ? 'text-primary fw-bold' : ''}`}>
-                            {size.name}
-                          </h6>
-                          <p className="card-text text-success fw-bold">${size.price}</p>
-                          {pizza.size === size.id && (
-                            <div className="position-absolute top-0 end-0 p-2">
-                              <FaCheckCircle className="text-primary" />
-                            </div>
-                          )}
+                  <div className="row g-3">
+                    {sizes.map(size => (
+                      <div key={size.id} className="col-md-6">
+                        <div
+                          className={`card h-100 cursor-pointer transition-all ${pizza.size === size.id
+                              ? 'border-primary shadow-lg'
+                              : 'border-light hover-shadow'
+                            }`}
+                          onClick={() => updatePizza('size', size.id)}
+                          style={{
+                            cursor: 'pointer',
+                            backgroundColor: pizza.size === size.id ? '#e3f2fd' : 'white',
+                            transform: pizza.size === size.id ? 'translateY(-2px)' : 'none',
+                            transition: 'all 0.3s ease'
+                          }}
+                        >
+                          <div className="card-body text-center">
+                            <h6 className={`card-title ${pizza.size === size.id ? 'text-primary fw-bold' : ''}`}>
+                              {size.name}
+                            </h6>
+                            <p className="card-text text-success fw-bold">${size.price}</p>
+                            {pizza.size === size.id && (
+                              <div className="position-absolute top-0 end-0 p-2">
+                                <FaCheckCircle className="text-primary" />
+                              </div>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
             )}
 
             {currentStep === 1 && (
               <div className="card border-0 shadow-sm mb-4">
                 <div className="card-body">
                   <h5 className="card-title mb-4">Choose Your Crust</h5>
-                <div className="row g-3">
-                  {crusts.map(crust => (
-                    <div key={crust.id} className="col-md-6">
-                      <div
-                        className={`card h-100 cursor-pointer transition-all ${
-                          pizza.crust === crust.id
-                            ? 'border-primary shadow-lg'
-                            : 'border-light hover-shadow'
-                        }`}
-                        onClick={() => updatePizza('crust', crust.id)}
-                        style={{
-                          cursor: 'pointer',
-                          backgroundColor: pizza.crust === crust.id ? '#e3f2fd' : 'white',
-                          transform: pizza.crust === crust.id ? 'translateY(-2px)' : 'none',
-                          transition: 'all 0.3s ease'
-                        }}
-                      >
-                        <div className="card-body text-center">
-                          <h6 className={`card-title ${pizza.crust === crust.id ? 'text-primary fw-bold' : ''}`}>
-                            {crust.name}
-                          </h6>
-                          <p className="card-text text-success fw-bold">
-                            {crust.price > 0 ? `+$${crust.price}` : 'Included'}
-                          </p>
-                          {pizza.crust === crust.id && (
-                            <div className="position-absolute top-0 end-0 p-2">
-                              <FaCheckCircle className="text-primary" />
-                            </div>
-                          )}
+                  <div className="row g-3">
+                    {crusts.map(crust => (
+                      <div key={crust.id} className="col-md-6">
+                        <div
+                          className={`card h-100 cursor-pointer transition-all ${pizza.crust === crust.id
+                              ? 'border-primary shadow-lg'
+                              : 'border-light hover-shadow'
+                            }`}
+                          onClick={() => updatePizza('crust', crust.id)}
+                          style={{
+                            cursor: 'pointer',
+                            backgroundColor: pizza.crust === crust.id ? '#e3f2fd' : 'white',
+                            transform: pizza.crust === crust.id ? 'translateY(-2px)' : 'none',
+                            transition: 'all 0.3s ease'
+                          }}
+                        >
+                          <div className="card-body text-center">
+                            <h6 className={`card-title ${pizza.crust === crust.id ? 'text-primary fw-bold' : ''}`}>
+                              {crust.name}
+                            </h6>
+                            <p className="card-text text-success fw-bold">
+                              {crust.price > 0 ? `+$${crust.price}` : 'Included'}
+                            </p>
+                            {pizza.crust === crust.id && (
+                              <div className="position-absolute top-0 end-0 p-2">
+                                <FaCheckCircle className="text-primary" />
+                              </div>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
             )}
 
             {currentStep === 2 && (
               <div className="card border-0 shadow-sm mb-4">
                 <div className="card-body">
                   <h5 className="card-title mb-4">Choose Your Sauce</h5>
-                <div className="row g-3">
-                  {sauces.map(sauce => (
-                    <div key={sauce.id} className="col-md-6">
-                      <div
-                        className={`card h-100 cursor-pointer transition-all ${
-                          pizza.sauce === sauce.id
-                            ? 'border-primary shadow-lg'
-                            : 'border-light hover-shadow'
-                        }`}
-                        onClick={() => updatePizza('sauce', sauce.id)}
-                        style={{
-                          cursor: 'pointer',
-                          backgroundColor: pizza.sauce === sauce.id ? '#e3f2fd' : 'white',
-                          transform: pizza.sauce === sauce.id ? 'translateY(-2px)' : 'none',
-                          transition: 'all 0.3s ease'
-                        }}
-                      >
-                        <div className="card-body text-center">
-                          <h6 className={`card-title ${pizza.sauce === sauce.id ? 'text-primary fw-bold' : ''}`}>
-                            {sauce.name}
-                          </h6>
-                          <p className="card-text text-success fw-bold">
-                            {sauce.price > 0 ? `+$${sauce.price}` : 'Included'}
-                          </p>
-                          {pizza.sauce === sauce.id && (
-                            <div className="position-absolute top-0 end-0 p-2">
-                              <FaCheckCircle className="text-primary" />
-                            </div>
-                          )}
+                  <div className="row g-3">
+                    {sauces.map(sauce => (
+                      <div key={sauce.id} className="col-md-6">
+                        <div
+                          className={`card h-100 cursor-pointer transition-all ${pizza.sauce === sauce.id
+                              ? 'border-primary shadow-lg'
+                              : 'border-light hover-shadow'
+                            }`}
+                          onClick={() => updatePizza('sauce', sauce.id)}
+                          style={{
+                            cursor: 'pointer',
+                            backgroundColor: pizza.sauce === sauce.id ? '#e3f2fd' : 'white',
+                            transform: pizza.sauce === sauce.id ? 'translateY(-2px)' : 'none',
+                            transition: 'all 0.3s ease'
+                          }}
+                        >
+                          <div className="card-body text-center">
+                            <h6 className={`card-title ${pizza.sauce === sauce.id ? 'text-primary fw-bold' : ''}`}>
+                              {sauce.name}
+                            </h6>
+                            <p className="card-text text-success fw-bold">
+                              {sauce.price > 0 ? `+$${sauce.price}` : 'Included'}
+                            </p>
+                            {pizza.sauce === sauce.id && (
+                              <div className="position-absolute top-0 end-0 p-2">
+                                <FaCheckCircle className="text-primary" />
+                              </div>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
             )}
 
             {currentStep === 3 && (
               <div className="card border-0 shadow-sm mb-4">
                 <div className="card-body">
                   <h5 className="card-title mb-4">Choose Your Cheese</h5>
-                <div className="row g-3">
-                  {cheeses.map(cheese => (
-                    <div key={cheese.id} className="col-md-6">
-                      <div
-                        className={`card h-100 cursor-pointer transition-all ${
-                          pizza.cheese === cheese.id
-                            ? 'border-primary shadow-lg'
-                            : 'border-light hover-shadow'
-                        }`}
-                        onClick={() => updatePizza('cheese', cheese.id)}
-                        style={{
-                          cursor: 'pointer',
-                          backgroundColor: pizza.cheese === cheese.id ? '#e3f2fd' : 'white',
-                          transform: pizza.cheese === cheese.id ? 'translateY(-2px)' : 'none',
-                          transition: 'all 0.3s ease'
-                        }}
-                      >
-                        <div className="card-body text-center">
-                          <h6 className={`card-title ${pizza.cheese === cheese.id ? 'text-primary fw-bold' : ''}`}>
-                            {cheese.name}
-                          </h6>
-                          <p className="card-text text-success fw-bold">
-                            {cheese.price > 0 ? `+$${cheese.price}` : 'Included'}
-                          </p>
-                          {pizza.cheese === cheese.id && (
-                            <div className="position-absolute top-0 end-0 p-2">
-                              <FaCheckCircle className="text-primary" />
-                            </div>
-                          )}
+                  <div className="row g-3">
+                    {cheeses.map(cheese => (
+                      <div key={cheese.id} className="col-md-6">
+                        <div
+                          className={`card h-100 cursor-pointer transition-all ${pizza.cheese === cheese.id
+                              ? 'border-primary shadow-lg'
+                              : 'border-light hover-shadow'
+                            }`}
+                          onClick={() => updatePizza('cheese', cheese.id)}
+                          style={{
+                            cursor: 'pointer',
+                            backgroundColor: pizza.cheese === cheese.id ? '#e3f2fd' : 'white',
+                            transform: pizza.cheese === cheese.id ? 'translateY(-2px)' : 'none',
+                            transition: 'all 0.3s ease'
+                          }}
+                        >
+                          <div className="card-body text-center">
+                            <h6 className={`card-title ${pizza.cheese === cheese.id ? 'text-primary fw-bold' : ''}`}>
+                              {cheese.name}
+                            </h6>
+                            <p className="card-text text-success fw-bold">
+                              {cheese.price > 0 ? `+$${cheese.price}` : 'Included'}
+                            </p>
+                            {pizza.cheese === cheese.id && (
+                              <div className="position-absolute top-0 end-0 p-2">
+                                <FaCheckCircle className="text-primary" />
+                              </div>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
             )}
 
             {currentStep === 4 && (
@@ -727,40 +722,39 @@ const PizzaBuilder = () => {
                 <div className="card-body">
                   <h5 className="card-title mb-4">🥓 Choose Meat Toppings</h5>
                   <p className="text-muted mb-4">Add delicious meat toppings to your pizza (optional)</p>
-                <div className="row g-3">
-                  {toppings.filter(t => t.category === 'meat').map(topping => (
-                    <div key={topping.id} className="col-md-6">
-                      <div
-                        className={`card h-100 cursor-pointer transition-all ${
-                          pizza.toppings.includes(topping.id)
-                            ? 'border-success shadow-lg'
-                            : 'border-light hover-shadow'
-                        }`}
-                        onClick={() => toggleTopping(topping.id)}
-                        style={{
-                          cursor: 'pointer',
-                          backgroundColor: pizza.toppings.includes(topping.id) ? '#e8f5e8' : 'white',
-                          transform: pizza.toppings.includes(topping.id) ? 'translateY(-2px)' : 'none',
-                          transition: 'all 0.3s ease'
-                        }}
-                      >
-                        <div className="card-body text-center">
-                          <h6 className={`card-title mb-2 ${pizza.toppings.includes(topping.id) ? 'text-success fw-bold' : ''}`}>
-                            {topping.name}
-                          </h6>
-                          <div className="mb-2">
-                            <small className="text-success fw-bold">+${topping.price}</small>
-                          </div>
-                          <div className={`fs-5 ${pizza.toppings.includes(topping.id) ? 'text-success' : 'text-muted'}`}>
-                            {pizza.toppings.includes(topping.id) ? <FaMinus /> : <FaPlus />}
+                  <div className="row g-3">
+                    {toppings.filter(t => t.category === 'meat').map(topping => (
+                      <div key={topping.id} className="col-md-6">
+                        <div
+                          className={`card h-100 cursor-pointer transition-all ${pizza.toppings.includes(topping.id)
+                              ? 'border-success shadow-lg'
+                              : 'border-light hover-shadow'
+                            }`}
+                          onClick={() => toggleTopping(topping.id)}
+                          style={{
+                            cursor: 'pointer',
+                            backgroundColor: pizza.toppings.includes(topping.id) ? '#e8f5e8' : 'white',
+                            transform: pizza.toppings.includes(topping.id) ? 'translateY(-2px)' : 'none',
+                            transition: 'all 0.3s ease'
+                          }}
+                        >
+                          <div className="card-body text-center">
+                            <h6 className={`card-title mb-2 ${pizza.toppings.includes(topping.id) ? 'text-success fw-bold' : ''}`}>
+                              {topping.name}
+                            </h6>
+                            <div className="mb-2">
+                              <small className="text-success fw-bold">+${topping.price}</small>
+                            </div>
+                            <div className={`fs-5 ${pizza.toppings.includes(topping.id) ? 'text-success' : 'text-muted'}`}>
+                              {pizza.toppings.includes(topping.id) ? <FaMinus /> : <FaPlus />}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
             )}
 
             {currentStep === 5 && (
@@ -769,40 +763,39 @@ const PizzaBuilder = () => {
                   <h5 className="card-title mb-4">🥬 Choose Vegetable Toppings</h5>
                   <p className="text-muted mb-4">Add fresh vegetables to your pizza (optional)</p>
 
-                <div className="row g-3">
-                  {toppings.filter(t => t.category === 'vegetable').map(topping => (
-                    <div key={topping.id} className="col-md-6">
-                      <div
-                        className={`card h-100 cursor-pointer transition-all ${
-                          pizza.toppings.includes(topping.id)
-                            ? 'border-success shadow-lg'
-                            : 'border-light hover-shadow'
-                        }`}
-                        onClick={() => toggleTopping(topping.id)}
-                        style={{
-                          cursor: 'pointer',
-                          backgroundColor: pizza.toppings.includes(topping.id) ? '#e8f5e8' : 'white',
-                          transform: pizza.toppings.includes(topping.id) ? 'translateY(-2px)' : 'none',
-                          transition: 'all 0.3s ease'
-                        }}
-                      >
-                        <div className="card-body text-center">
-                          <h6 className={`card-title mb-2 ${pizza.toppings.includes(topping.id) ? 'text-success fw-bold' : ''}`}>
-                            {topping.name}
-                          </h6>
-                          <div className="mb-2">
-                            <small className="text-success fw-bold">+${topping.price}</small>
-                          </div>
-                          <div className={`fs-5 ${pizza.toppings.includes(topping.id) ? 'text-success' : 'text-muted'}`}>
-                            {pizza.toppings.includes(topping.id) ? <FaMinus /> : <FaPlus />}
+                  <div className="row g-3">
+                    {toppings.filter(t => t.category === 'vegetable').map(topping => (
+                      <div key={topping.id} className="col-md-6">
+                        <div
+                          className={`card h-100 cursor-pointer transition-all ${pizza.toppings.includes(topping.id)
+                              ? 'border-success shadow-lg'
+                              : 'border-light hover-shadow'
+                            }`}
+                          onClick={() => toggleTopping(topping.id)}
+                          style={{
+                            cursor: 'pointer',
+                            backgroundColor: pizza.toppings.includes(topping.id) ? '#e8f5e8' : 'white',
+                            transform: pizza.toppings.includes(topping.id) ? 'translateY(-2px)' : 'none',
+                            transition: 'all 0.3s ease'
+                          }}
+                        >
+                          <div className="card-body text-center">
+                            <h6 className={`card-title mb-2 ${pizza.toppings.includes(topping.id) ? 'text-success fw-bold' : ''}`}>
+                              {topping.name}
+                            </h6>
+                            <div className="mb-2">
+                              <small className="text-success fw-bold">+${topping.price}</small>
+                            </div>
+                            <div className={`fs-5 ${pizza.toppings.includes(topping.id) ? 'text-success' : 'text-muted'}`}>
+                              {pizza.toppings.includes(topping.id) ? <FaMinus /> : <FaPlus />}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
             )}
 
             {currentStep === 6 && (
@@ -811,40 +804,39 @@ const PizzaBuilder = () => {
                   <h5 className="card-title mb-4">⭐ Choose Premium Toppings</h5>
                   <p className="text-muted mb-4">Add gourmet ingredients for an elevated experience (optional)</p>
 
-                <div className="row g-3">
-                  {toppings.filter(t => t.category === 'premium').map(topping => (
-                    <div key={topping.id} className="col-md-6">
-                      <div
-                        className={`card h-100 cursor-pointer transition-all ${
-                          pizza.toppings.includes(topping.id)
-                            ? 'border-warning shadow-lg'
-                            : 'border-light hover-shadow'
-                        }`}
-                        onClick={() => toggleTopping(topping.id)}
-                        style={{
-                          cursor: 'pointer',
-                          backgroundColor: pizza.toppings.includes(topping.id) ? '#fff8e1' : 'white',
-                          transform: pizza.toppings.includes(topping.id) ? 'translateY(-2px)' : 'none',
-                          transition: 'all 0.3s ease'
-                        }}
-                      >
-                        <div className="card-body text-center">
-                          <h6 className={`card-title mb-2 ${pizza.toppings.includes(topping.id) ? 'text-warning fw-bold' : ''}`}>
-                            {topping.name}
-                          </h6>
-                          <div className="mb-2">
-                            <small className="text-success fw-bold">+${topping.price}</small>
-                          </div>
-                          <div className={`fs-5 ${pizza.toppings.includes(topping.id) ? 'text-warning' : 'text-muted'}`}>
-                            {pizza.toppings.includes(topping.id) ? <FaMinus /> : <FaPlus />}
+                  <div className="row g-3">
+                    {toppings.filter(t => t.category === 'premium').map(topping => (
+                      <div key={topping.id} className="col-md-6">
+                        <div
+                          className={`card h-100 cursor-pointer transition-all ${pizza.toppings.includes(topping.id)
+                              ? 'border-warning shadow-lg'
+                              : 'border-light hover-shadow'
+                            }`}
+                          onClick={() => toggleTopping(topping.id)}
+                          style={{
+                            cursor: 'pointer',
+                            backgroundColor: pizza.toppings.includes(topping.id) ? '#fff8e1' : 'white',
+                            transform: pizza.toppings.includes(topping.id) ? 'translateY(-2px)' : 'none',
+                            transition: 'all 0.3s ease'
+                          }}
+                        >
+                          <div className="card-body text-center">
+                            <h6 className={`card-title mb-2 ${pizza.toppings.includes(topping.id) ? 'text-warning fw-bold' : ''}`}>
+                              {topping.name}
+                            </h6>
+                            <div className="mb-2">
+                              <small className="text-success fw-bold">+${topping.price}</small>
+                            </div>
+                            <div className={`fs-5 ${pizza.toppings.includes(topping.id) ? 'text-warning' : 'text-muted'}`}>
+                              {pizza.toppings.includes(topping.id) ? <FaMinus /> : <FaPlus />}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
             )}
 
             {/* Navigation Buttons */}

@@ -54,18 +54,18 @@ const Footer = () => {
             <h5 className="text-uppercase mb-4 text-white">Bella Vita</h5>
             <p className="mb-4">Experience authentic Italian cuisine with international influences in a warm and welcoming atmosphere.</p>
             <div className="mt-4">
-              <a href="#!" className="text-white me-3 hover-effect">
+              <button type="button" className="btn btn-link text-white me-3 hover-effect p-0 border-0" aria-label="Facebook">
                 <FaFacebook size={24} />
-              </a>
-              <a href="#!" className="text-white me-3 hover-effect">
+              </button>
+              <button type="button" className="btn btn-link text-white me-3 hover-effect p-0 border-0" aria-label="Instagram">
                 <FaInstagram size={24} />
-              </a>
-              <a href="#!" className="text-white me-3 hover-effect">
+              </button>
+              <button type="button" className="btn btn-link text-white me-3 hover-effect p-0 border-0" aria-label="Twitter">
                 <FaTwitter size={24} />
-              </a>
-              <a href="#!" className="text-white hover-effect">
+              </button>
+              <button type="button" className="btn btn-link text-white hover-effect p-0 border-0" aria-label="Yelp">
                 <FaYelp size={24} />
-              </a>
+              </button>
             </div>
           </div>
 
