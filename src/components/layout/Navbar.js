@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { FaBars, FaTimes, FaUser, FaSignOutAlt, FaClipboardList } from 'react-icons/fa';
 import CartDropdown from '../cart/CartDropdown';
+import { useAuth } from '../../context/AuthContext';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +29,13 @@ const Navbar = () => {
 
   const closeMenu = () => {
     setIsOpen(false);
+    setUserDropdownOpen(false);
+  };
+
+  const handleLogout = () => {
+    logout();
+    setUserDropdownOpen(false);
+    navigate('/');
   };
 
   return (
@@ -121,6 +132,118 @@ const Navbar = () => {
                 </NavLink>
               </li>
             ))}
+
+            {/* User Profile / Auth Buttons */}
+            {user ? (
+              // Logged in - show user dropdown
+              <li className="nav-item dropdown ms-lg-3 mt-3 mt-lg-0">
+                <button
+                  className="btn btn-outline-light d-flex align-items-center gap-2"
+                  style={{
+                    borderRadius: '25px',
+                    padding: '8px 16px',
+                    fontWeight: '600',
+                    fontSize: '14px',
+                    border: '2px solid white',
+                    backgroundColor: userDropdownOpen ? 'white' : 'transparent',
+                    color: userDropdownOpen ? '#2c3e50' : 'white',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+                  type="button"
+                >
+                  <FaUser />
+                  <span>{user.firstName || user.email}</span>
+                </button>
+
+                {userDropdownOpen && (
+                  <>
+                    <div
+                      className="position-fixed top-0 start-0 w-100 h-100"
+                      style={{ zIndex: 1050 }}
+                      onClick={() => setUserDropdownOpen(false)}
+                    />
+                    <div
+                      className="dropdown-menu show position-absolute end-0 mt-2"
+                      style={{
+                        minWidth: '200px',
+                        borderRadius: '15px',
+                        border: 'none',
+                        boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+                        zIndex: 1055
+                      }}
+                    >
+                      <div className="px-3 py-2 border-bottom">
+                        <small className="text-muted">Signed in as</small>
+                        <div className="fw-bold">{user.email}</div>
+                      </div>
+                      <Link
+                        to="/profile"
+                        className="dropdown-item d-flex align-items-center gap-2 py-2"
+                        onClick={closeMenu}
+                      >
+                        <FaUser /> My Profile
+                      </Link>
+                      <Link
+                        to="/orders"
+                        className="dropdown-item d-flex align-items-center gap-2 py-2"
+                        onClick={closeMenu}
+                      >
+                        <FaClipboardList /> My Orders
+                      </Link>
+                      <div className="dropdown-divider"></div>
+                      <button
+                        className="dropdown-item d-flex align-items-center gap-2 py-2 text-danger"
+                        onClick={handleLogout}
+                      >
+                        <FaSignOutAlt /> Logout
+                      </button>
+                    </div>
+                  </>
+                )}
+              </li>
+            ) : (
+              // Not logged in - show login/register buttons
+              <>
+                <li className="nav-item ms-lg-3 mt-3 mt-lg-0">
+                  <Link
+                    to="/login"
+                    className="btn btn-outline-light"
+                    style={{
+                      borderRadius: '25px',
+                      padding: '8px 20px',
+                      fontWeight: '600',
+                      fontSize: '14px',
+                      border: '2px solid white',
+                      transition: 'all 0.3s ease'
+                    }}
+                    onClick={closeMenu}
+                  >
+                    Login
+                  </Link>
+                </li>
+                <li className="nav-item ms-lg-2 mt-3 mt-lg-0">
+                  <Link
+                    to="/register"
+                    className="btn"
+                    style={{
+                      borderRadius: '25px',
+                      padding: '8px 20px',
+                      fontWeight: '600',
+                      fontSize: '14px',
+                      backgroundColor: 'white',
+                      color: '#2c3e50',
+                      border: '2px solid white',
+                      transition: 'all 0.3s ease'
+                    }}
+                    onClick={closeMenu}
+                  >
+                    Sign Up
+                  </Link>
+                </li>
+              </>
+            )}
+
             {/* Desktop Cart - only visible on large screens */}
             <li className="nav-item ms-lg-3 mt-3 mt-lg-0 d-none d-lg-block">
               <CartDropdown />
@@ -128,7 +251,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-      <style jsx>{`
+      <style>{`
         .navbar {
           backdrop-filter: blur(8px);
           -webkit-backdrop-filter: blur(8px);
@@ -196,6 +319,18 @@ const Navbar = () => {
             left: auto !important;
             margin-top: 8px !important;
           }
+        }
+        
+        /* Auth buttons hover effects */
+        .btn-outline-light:hover {
+          background-color: white !important;
+          color: #2c3e50 !important;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 15px rgba(255,255,255,0.3);
+        }
+        
+        .dropdown-item:hover {
+          background-color: #f8f9fa;
         }
       `}</style>
     </nav>

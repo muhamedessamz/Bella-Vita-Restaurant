@@ -4,25 +4,64 @@ import { FaFilter, FaSearch } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import MenuCategory from '../components/menu/MenuCategory';
 import { getDietaryIcon, DIETARY_ICONS } from '../utils/dietaryUtils';
-import menuData from '../data/menuData';
+import { menuService } from '../api/services';
 import '../styles/MenuPage.css';
 import '../styles/pages/Menu.css';
-
-if (!menuData || !Array.isArray(menuData.categories)) {
-  console.error('Invalid menu data format');
-  menuData = { categories: [] };
-}
 
 const Menu = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [menuData, setMenuData] = useState({ categories: [] });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const [dietaryFilters, setDietaryFilters] = useState(
     Object.keys(DIETARY_ICONS).reduce((acc, key) => ({
       ...acc,
       [key]: false
     }), {})
   );
+
+  useEffect(() => {
+    const fetchMenuData = async () => {
+      try {
+        setLoading(true);
+        const [categoriesData, itemsData] = await Promise.all([
+          menuService.getCategories(),
+          menuService.getAllItems()
+        ]);
+
+        // Group items by category
+        const categoriesWithItems = categoriesData.map(category => {
+          const categoryItems = itemsData.filter(item => item.categoryId === category.id)
+            .map(item => ({
+              ...item,
+              image: item.imageUrl, // Map ImageUrl to image
+              dietary: [
+                item.isVegetarian ? 'vegetarian' : null,
+                item.isVegan ? 'vegan' : null,
+                item.isGlutenFree ? 'gluten-free' : null
+              ].filter(Boolean)
+            }));
+
+          return {
+            ...category,
+            items: categoryItems
+          };
+        });
+
+        setMenuData({ categories: categoriesWithItems });
+      } catch (err) {
+        console.error('Error fetching menu:', err);
+        setError('Failed to load menu. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMenuData();
+  }, []);
 
   useEffect(() => {
     try {
@@ -33,6 +72,25 @@ const Menu = () => {
       setActiveCategory('all');
     }
   }, [searchParams]);
+
+  if (loading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '60vh', paddingTop: '80px' }}>
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center text-danger" style={{ paddingTop: '100px' }}>
+        <h3>{error}</h3>
+        <button className="btn btn-primary mt-3" onClick={() => window.location.reload()}>Try Again</button>
+      </div>
+    );
+  }
 
   const filteredMenu = menuData.categories.map(category => {
     if (!category || typeof category !== 'object') return { items: [] };

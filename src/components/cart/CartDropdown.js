@@ -141,7 +141,7 @@ const CartDropdown = () => {
 
   return (
     <div className="dropdown">
-      <style jsx>{`
+      <style>{`
         .cart-button {
           user-select: none;
           -webkit-user-select: none;
@@ -430,7 +430,7 @@ const CartDropdown = () => {
         </>
       )}
 
-      <style jsx>{`
+      <style>{`
         .cart-button:hover {
           background-color: white !important;
           color: #2c3e50 !important;

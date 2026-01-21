@@ -7,7 +7,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-dark text-white py-5">
-      <style jsx>{`
+      <style>{`
         .hover-effect {
           transition: all 0.3s ease;
         }

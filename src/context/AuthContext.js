@@ -34,8 +34,8 @@ export const AuthProvider = ({ children }) => {
             setLoading(true);
             const response = await authService.login(email, password);
 
-            if (response.success && response.data.user) {
-                setUser(response.data.user);
+            if (response.success && response.user) {
+                setUser(response.user);
                 setIsAuthenticated(true);
                 toast.success('Successfully logged in!');
                 return response;
@@ -56,8 +56,8 @@ export const AuthProvider = ({ children }) => {
             setLoading(true);
             const response = await authService.register(userData);
 
-            if (response.success && response.data.user) {
-                setUser(response.data.user);
+            if (response.success && response.user) {
+                setUser(response.user);
                 setIsAuthenticated(true);
                 toast.success('Account created successfully!');
                 return response;

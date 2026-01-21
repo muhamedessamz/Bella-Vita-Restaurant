@@ -84,7 +84,7 @@ const WhyChooseUs = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="col-lg-6">
             <div className="card border-0 bg-dark text-white p-4 p-lg-5 h-100 text-center">
               <h3 className="h4 fw-bold mb-3">Sustainability</h3>
@@ -111,8 +111,8 @@ const WhyChooseUs = () => {
           </div>
         </div>
       </div>
-      
-      <style jsx>{`
+
+      <style>{`
         .card {
           transition: transform 0.3s ease, box-shadow 0.3s ease;
           border-radius: 1rem;

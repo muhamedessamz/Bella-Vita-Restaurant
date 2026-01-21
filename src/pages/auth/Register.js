@@ -40,7 +40,11 @@ const Register = () => {
         }
 
         try {
-            const { confirmPassword, ...userData } = formData;
+            const { confirmPassword, phone, ...rest } = formData;
+            const userData = {
+                ...rest,
+                phoneNumber: phone
+            };
             await register(userData);
             navigate('/');
         } catch (error) {

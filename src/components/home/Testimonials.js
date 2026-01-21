@@ -183,7 +183,7 @@ const Testimonials = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .card {
           transition: all 0.3s ease;
           border-radius: 1rem;

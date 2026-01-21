@@ -7,7 +7,7 @@ const HeroSection = () => {
     <section className="hero-section position-relative text-white">
       <div className="position-relative" style={{ height: '100vh' }}>
         {/* Background Image */}
-        <div 
+        <div
           className="position-absolute top-0 start-0 w-100 h-100"
           style={{
             backgroundImage: 'url(/images/home.jpeg)',
@@ -16,7 +16,7 @@ const HeroSection = () => {
             filter: 'brightness(0.7)'
           }}
         ></div>
-        
+
         {/* Content Overlay */}
         <div className="container position-relative h-100 d-flex align-items-center justify-content-center">
           <div className="row justify-content-center text-center w-100">
@@ -62,16 +62,16 @@ const HeroSection = () => {
                   transition: 'all 0.3s ease',
                   boxShadow: '0 4px 15px rgba(231, 76, 60, 0.3)'
                 }}
-                onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = '#c0392b';
-                  e.target.style.transform = 'translateY(-2px)';
-                  e.target.style.boxShadow = '0 8px 25px rgba(231, 76, 60, 0.4)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = '#e74c3c';
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = '0 4px 15px rgba(231, 76, 60, 0.3)';
-                }}>
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = '#c0392b';
+                    e.target.style.transform = 'translateY(-2px)';
+                    e.target.style.boxShadow = '0 8px 25px rgba(231, 76, 60, 0.4)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = '#e74c3c';
+                    e.target.style.transform = 'translateY(0)';
+                    e.target.style.boxShadow = '0 4px 15px rgba(231, 76, 60, 0.3)';
+                  }}>
                   <FaUtensils className="me-2" /> View Menu
                 </Link>
                 <Link to="/reservations" className="btn btn-outline-light btn-lg px-5 py-3" style={{
@@ -84,18 +84,18 @@ const HeroSection = () => {
                   transition: 'all 0.3s ease',
                   borderWidth: '2px'
                 }}
-                onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = 'white';
-                  e.target.style.color = '#2c3e50';
-                  e.target.style.transform = 'translateY(-2px)';
-                  e.target.style.boxShadow = '0 8px 25px rgba(255,255,255,0.3)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = 'transparent';
-                  e.target.style.color = 'white';
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = 'none';
-                }}>
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = 'white';
+                    e.target.style.color = '#2c3e50';
+                    e.target.style.transform = 'translateY(-2px)';
+                    e.target.style.boxShadow = '0 8px 25px rgba(255,255,255,0.3)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = 'transparent';
+                    e.target.style.color = 'white';
+                    e.target.style.transform = 'translateY(0)';
+                    e.target.style.boxShadow = 'none';
+                  }}>
                   <FaCalendarAlt className="me-2" /> Make a Reservation
                 </Link>
               </div>
@@ -103,7 +103,7 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-      <style jsx>{`
+      <style>{`
         .hero-section {
           min-height: 100vh;
           overflow: hidden;

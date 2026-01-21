@@ -33,7 +33,7 @@ const getImageForCartItem = (cartItem) => {
         return found.image;
       }
     }
-  } catch (_) {}
+  } catch (_) { }
 
   // Fallback for custom pizza if not caught above
   if (cartItem.name && cartItem.name.includes('Custom') && cartItem.name.includes('Pizza')) {
@@ -101,236 +101,236 @@ const Cart = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-        <div className="row">
-          <div className="col-lg-8">
-            <div className="d-flex justify-content-between align-items-center mb-4">
-              <h2 className="mb-0">Shopping Cart</h2>
-              <button
-                className="btn btn-outline-danger"
-                onClick={clearCart}
-                style={{ borderRadius: '20px' }}
-              >
-                Clear All
-              </button>
-            </div>
+          <div className="row">
+            <div className="col-lg-8">
+              <div className="d-flex justify-content-between align-items-center mb-4">
+                <h2 className="mb-0">Shopping Cart</h2>
+                <button
+                  className="btn btn-outline-danger"
+                  onClick={clearCart}
+                  style={{ borderRadius: '20px' }}
+                >
+                  Clear All
+                </button>
+              </div>
 
-            <div className="card border-0 shadow-sm" style={{ borderRadius: '20px' }}>
-              <div className="card-body p-0">
-                {items.map((item, index) => (
-                  <motion.div
-                    key={item.id}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className={`p-4 ${index !== items.length - 1 ? 'border-bottom' : ''}`}
-                  >
-                    {/* Desktop Layout */}
-                    <div className="row align-items-center d-none d-md-flex">
-                      <div className="col-md-2">
-                        <img
-                          src={getImageForCartItem(item)}
-                          alt={item.name}
-                          className="rounded"
-                          style={{
-                            width: '80px',
-                            height: '80px',
-                            objectFit: 'cover',
-                            backgroundColor: '#f8f9fa'
-                          }}
-                          onError={(e) => {
-                            console.error(`❌ Failed to load image for ${item.name}: ${e.target.src}`);
-                            // Force reload with a different approach
-                            const newSrc = getImageForCartItem(item);
-                            if (newSrc && newSrc !== e.target.src) {
-                              e.target.src = newSrc;
-                            } else if (item.id && item.id.startsWith('custom-pizza-')) {
-                              // Ensure custom pizza always gets the right image
-                              e.target.src = '/images/Build-Your-Perfect-Pizza.jpg';
-                            }
-                          }}
-                        />
-                      </div>
+              <div className="card border-0 shadow-sm" style={{ borderRadius: '20px' }}>
+                <div className="card-body p-0">
+                  {items.map((item, index) => (
+                    <motion.div
+                      key={item.id}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className={`p-4 ${index !== items.length - 1 ? 'border-bottom' : ''}`}
+                    >
+                      {/* Desktop Layout */}
+                      <div className="row align-items-center d-none d-md-flex">
+                        <div className="col-md-2">
+                          <img
+                            src={getImageForCartItem(item)}
+                            alt={item.name}
+                            className="rounded"
+                            style={{
+                              width: '80px',
+                              height: '80px',
+                              objectFit: 'cover',
+                              backgroundColor: '#f8f9fa'
+                            }}
+                            onError={(e) => {
+                              console.error(`❌ Failed to load image for ${item.name}: ${e.target.src}`);
+                              // Force reload with a different approach
+                              const newSrc = getImageForCartItem(item);
+                              if (newSrc && newSrc !== e.target.src) {
+                                e.target.src = newSrc;
+                              } else if (item.id && item.id.startsWith('custom-pizza-')) {
+                                // Ensure custom pizza always gets the right image
+                                e.target.src = '/images/Build-Your-Perfect-Pizza.jpg';
+                              }
+                            }}
+                          />
+                        </div>
 
-                      <div className="col-md-4">
-                        <h5 className="mb-1">{item.name}</h5>
-                        <p className="text-muted mb-0">${item.price.toFixed(2)} each</p>
-                      </div>
+                        <div className="col-md-4">
+                          <h5 className="mb-1">{item.name}</h5>
+                          <p className="text-muted mb-0">${item.price.toFixed(2)} each</p>
+                        </div>
 
-                      <div className="col-md-3">
-                        <div className="d-flex align-items-center justify-content-center gap-3">
-                          <button
-                            className="btn btn-outline-secondary rounded-circle"
-                            style={{ width: '40px', height: '40px', padding: '0' }}
-                            onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
-                          >
-                            <FaMinus style={{ fontSize: '12px' }} />
-                          </button>
+                        <div className="col-md-3">
+                          <div className="d-flex align-items-center justify-content-center gap-3">
+                            <button
+                              className="btn btn-outline-secondary rounded-circle"
+                              style={{ width: '40px', height: '40px', padding: '0' }}
+                              onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
+                            >
+                              <FaMinus style={{ fontSize: '12px' }} />
+                            </button>
 
-                          <span className="fw-bold fs-5 px-3">{item.quantity}</span>
+                            <span className="fw-bold fs-5 px-3">{item.quantity}</span>
 
-                          <button
-                            className="btn btn-outline-secondary rounded-circle"
-                            style={{ width: '40px', height: '40px', padding: '0' }}
-                            onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
-                          >
-                            <FaPlus style={{ fontSize: '12px' }} />
-                          </button>
+                            <button
+                              className="btn btn-outline-secondary rounded-circle"
+                              style={{ width: '40px', height: '40px', padding: '0' }}
+                              onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
+                            >
+                              <FaPlus style={{ fontSize: '12px' }} />
+                            </button>
+                          </div>
+                        </div>
+
+                        <div className="col-md-2">
+                          <div className="text-center">
+                            <div className="fw-bold fs-5 mb-2">
+                              ${(item.price * item.quantity).toFixed(2)}
+                            </div>
+                            <div className="d-flex justify-content-center">
+                              <button
+                                className="btn btn-outline-danger rounded-circle"
+                                style={{ width: '40px', height: '40px', padding: '0' }}
+                                onClick={() => removeFromCart(item.id)}
+                              >
+                                <FaTrash style={{ fontSize: '12px' }} />
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
 
-                      <div className="col-md-2">
-                        <div className="text-center">
-                          <div className="fw-bold fs-5 mb-2">
-                            ${(item.price * item.quantity).toFixed(2)}
+                      {/* Mobile Layout */}
+                      <div className="d-md-none">
+                        <div className="d-flex align-items-center gap-3 mb-3">
+                          <img
+                            src={getImageForCartItem(item)}
+                            alt={item.name}
+                            className="rounded"
+                            style={{
+                              width: '60px',
+                              height: '60px',
+                              objectFit: 'cover',
+                              backgroundColor: '#f8f9fa'
+                            }}
+                            onError={(e) => {
+                              console.error(`❌ Failed to load image for ${item.name}: ${e.target.src}`);
+                              // Force reload with a different approach
+                              const newSrc = getImageForCartItem(item);
+                              if (newSrc && newSrc !== e.target.src) {
+                                e.target.src = newSrc;
+                              } else if (item.id && item.id.startsWith('custom-pizza-')) {
+                                // Ensure custom pizza always gets the right image
+                                e.target.src = '/images/Build-Your-Perfect-Pizza.jpg';
+                              }
+                            }}
+                          />
+                          <div className="flex-grow-1">
+                            <h6 className="mb-1">{item.name}</h6>
+                            <p className="text-muted mb-0 small">${item.price.toFixed(2)} each</p>
                           </div>
-                          <div className="d-flex justify-content-center">
+                        </div>
+
+                        <div className="d-flex align-items-center justify-content-between">
+                          <div className="d-flex align-items-center gap-2">
+                            <button
+                              className="btn btn-outline-secondary rounded-circle"
+                              style={{ width: '35px', height: '35px', padding: '0' }}
+                              onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
+                            >
+                              <FaMinus style={{ fontSize: '10px' }} />
+                            </button>
+
+                            <span className="fw-bold px-3">{item.quantity}</span>
+
+                            <button
+                              className="btn btn-outline-secondary rounded-circle"
+                              style={{ width: '35px', height: '35px', padding: '0' }}
+                              onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
+                            >
+                              <FaPlus style={{ fontSize: '10px' }} />
+                            </button>
+                          </div>
+
+                          <div className="text-center">
+                            <div className="fw-bold mb-1">
+                              ${(item.price * item.quantity).toFixed(2)}
+                            </div>
                             <button
                               className="btn btn-outline-danger rounded-circle"
-                              style={{ width: '40px', height: '40px', padding: '0' }}
+                              style={{ width: '35px', height: '35px', padding: '0' }}
                               onClick={() => removeFromCart(item.id)}
                             >
-                              <FaTrash style={{ fontSize: '12px' }} />
+                              <FaTrash style={{ fontSize: '10px' }} />
                             </button>
                           </div>
                         </div>
                       </div>
-                    </div>
-
-                    {/* Mobile Layout */}
-                    <div className="d-md-none">
-                      <div className="d-flex align-items-center gap-3 mb-3">
-                        <img
-                          src={getImageForCartItem(item)}
-                          alt={item.name}
-                          className="rounded"
-                          style={{
-                            width: '60px',
-                            height: '60px',
-                            objectFit: 'cover',
-                            backgroundColor: '#f8f9fa'
-                          }}
-                          onError={(e) => {
-                            console.error(`❌ Failed to load image for ${item.name}: ${e.target.src}`);
-                            // Force reload with a different approach
-                            const newSrc = getImageForCartItem(item);
-                            if (newSrc && newSrc !== e.target.src) {
-                              e.target.src = newSrc;
-                            } else if (item.id && item.id.startsWith('custom-pizza-')) {
-                              // Ensure custom pizza always gets the right image
-                              e.target.src = '/images/Build-Your-Perfect-Pizza.jpg';
-                            }
-                          }}
-                        />
-                        <div className="flex-grow-1">
-                          <h6 className="mb-1">{item.name}</h6>
-                          <p className="text-muted mb-0 small">${item.price.toFixed(2)} each</p>
-                        </div>
-                      </div>
-
-                      <div className="d-flex align-items-center justify-content-between">
-                        <div className="d-flex align-items-center gap-2">
-                          <button
-                            className="btn btn-outline-secondary rounded-circle"
-                            style={{ width: '35px', height: '35px', padding: '0' }}
-                            onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
-                          >
-                            <FaMinus style={{ fontSize: '10px' }} />
-                          </button>
-
-                          <span className="fw-bold px-3">{item.quantity}</span>
-
-                          <button
-                            className="btn btn-outline-secondary rounded-circle"
-                            style={{ width: '35px', height: '35px', padding: '0' }}
-                            onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
-                          >
-                            <FaPlus style={{ fontSize: '10px' }} />
-                          </button>
-                        </div>
-
-                        <div className="text-center">
-                          <div className="fw-bold mb-1">
-                            ${(item.price * item.quantity).toFixed(2)}
-                          </div>
-                          <button
-                            className="btn btn-outline-danger rounded-circle"
-                            style={{ width: '35px', height: '35px', padding: '0' }}
-                            onClick={() => removeFromCart(item.id)}
-                          >
-                            <FaTrash style={{ fontSize: '10px' }} />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </div>
+
+            <div className="col-lg-4">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 }}
+                className="card border-0 shadow-sm sticky-top"
+                style={{ borderRadius: '20px', top: '128px', marginTop: '28px' }}
+              >
+                <div className="card-body p-4">
+                  <h4 className="mb-4">Order Summary</h4>
+
+                  <div className="d-flex justify-content-between mb-3">
+                    <span>Subtotal:</span>
+                    <span>${getCartTotal().toFixed(2)}</span>
+                  </div>
+
+                  <div className="d-flex justify-content-between mb-3">
+                    <span>Tax (8%):</span>
+                    <span>${(getCartTotal() * 0.08).toFixed(2)}</span>
+                  </div>
+
+                  <div className="d-flex justify-content-between mb-3">
+                    <span>Delivery Fee:</span>
+                    <span>$3.99</span>
+                  </div>
+
+                  <hr />
+
+                  <div className="d-flex justify-content-between mb-4">
+                    <span className="fw-bold fs-5">Total:</span>
+                    <span className="fw-bold fs-5" style={{ color: '#e74c3c' }}>
+                      ${(getCartTotal() + (getCartTotal() * 0.08) + 3.99).toFixed(2)}
+                    </span>
+                  </div>
+
+                  <div className="d-grid gap-2">
+                    <Link
+                      to="/checkout"
+                      className="btn btn-primary btn-lg"
+                      style={{
+                        backgroundColor: '#e74c3c',
+                        border: 'none',
+                        borderRadius: '25px',
+                        fontWeight: '600',
+                        padding: '12px'
+                      }}
+                    >
+                      Proceed to Checkout
+                    </Link>
+
+                    <Link
+                      to="/menu"
+                      className="btn btn-outline-secondary"
+                      style={{ borderRadius: '25px', fontWeight: '600' }}
+                    >
+                      Continue Shopping
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </div>
-
-          <div className="col-lg-4">
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 }}
-              className="card border-0 shadow-sm sticky-top"
-              style={{ borderRadius: '20px', top: '128px', marginTop: '28px' }}
-            >
-              <div className="card-body p-4">
-                <h4 className="mb-4">Order Summary</h4>
-
-                <div className="d-flex justify-content-between mb-3">
-                  <span>Subtotal:</span>
-                  <span>${getCartTotal().toFixed(2)}</span>
-                </div>
-
-                <div className="d-flex justify-content-between mb-3">
-                  <span>Tax (8%):</span>
-                  <span>${(getCartTotal() * 0.08).toFixed(2)}</span>
-                </div>
-
-                <div className="d-flex justify-content-between mb-3">
-                  <span>Delivery Fee:</span>
-                  <span>$3.99</span>
-                </div>
-
-                <hr />
-
-                <div className="d-flex justify-content-between mb-4">
-                  <span className="fw-bold fs-5">Total:</span>
-                  <span className="fw-bold fs-5" style={{ color: '#e74c3c' }}>
-                    ${(getCartTotal() + (getCartTotal() * 0.08) + 3.99).toFixed(2)}
-                  </span>
-                </div>
-
-                <div className="d-grid gap-2">
-                  <Link
-                    to="/online-ordering"
-                    className="btn btn-primary btn-lg"
-                    style={{
-                      backgroundColor: '#e74c3c',
-                      border: 'none',
-                      borderRadius: '25px',
-                      fontWeight: '600',
-                      padding: '12px'
-                    }}
-                  >
-                    Proceed to Checkout
-                  </Link>
-
-                  <Link
-                    to="/menu"
-                    className="btn btn-outline-secondary"
-                    style={{ borderRadius: '25px', fontWeight: '600' }}
-                  >
-                    Continue Shopping
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </motion.div>
+        </motion.div>
       </div>
     </div>
   );

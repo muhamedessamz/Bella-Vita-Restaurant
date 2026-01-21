@@ -16,9 +16,9 @@ const authService = {
             const response = await apiClient.post(ENDPOINTS.AUTH.REGISTER, userData);
 
             // Store token and user data
-            if (response.data.token) {
-                localStorage.setItem('authToken', response.data.token);
-                localStorage.setItem('user', JSON.stringify(response.data.user));
+            if (response.token) {
+                localStorage.setItem('authToken', response.token);
+                localStorage.setItem('user', JSON.stringify(response.user));
             }
 
             return response;
@@ -41,9 +41,9 @@ const authService = {
             });
 
             // Store token and user data
-            if (response.data.token) {
-                localStorage.setItem('authToken', response.data.token);
-                localStorage.setItem('user', JSON.stringify(response.data.user));
+            if (response.token) {
+                localStorage.setItem('authToken', response.token);
+                localStorage.setItem('user', JSON.stringify(response.user));
             }
 
             return response;

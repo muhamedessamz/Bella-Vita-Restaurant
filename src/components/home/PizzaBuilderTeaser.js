@@ -151,7 +151,7 @@ const PizzaBuilderTeaser = () => {
                   </div>
                 </div>
               </div>
-              <div 
+              <div
                 className="position-absolute d-none d-lg-block"
                 style={{
                   width: '200px',
@@ -164,7 +164,7 @@ const PizzaBuilderTeaser = () => {
                   animation: 'float 6s ease-in-out infinite'
                 }}
               ></div>
-              <div 
+              <div
                 className="position-absolute d-none d-lg-block"
                 style={{
                   width: '150px',
@@ -217,7 +217,7 @@ const PizzaBuilderTeaser = () => {
           </div>
         </div>
       </div>
-      <style jsx>{`
+      <style>{`
         @keyframes float {
           0% { transform: translateY(0px) rotate(0deg); }
           50% { transform: translateY(-20px) rotate(5deg); }

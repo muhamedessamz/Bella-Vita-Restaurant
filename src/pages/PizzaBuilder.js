@@ -564,8 +564,8 @@ const PizzaBuilder = () => {
                       <div key={size.id} className="col-md-6">
                         <div
                           className={`card h-100 cursor-pointer transition-all ${pizza.size === size.id
-                              ? 'border-primary shadow-lg'
-                              : 'border-light hover-shadow'
+                            ? 'border-primary shadow-lg'
+                            : 'border-light hover-shadow'
                             }`}
                           onClick={() => updatePizza('size', size.id)}
                           style={{
@@ -603,8 +603,8 @@ const PizzaBuilder = () => {
                       <div key={crust.id} className="col-md-6">
                         <div
                           className={`card h-100 cursor-pointer transition-all ${pizza.crust === crust.id
-                              ? 'border-primary shadow-lg'
-                              : 'border-light hover-shadow'
+                            ? 'border-primary shadow-lg'
+                            : 'border-light hover-shadow'
                             }`}
                           onClick={() => updatePizza('crust', crust.id)}
                           style={{
@@ -644,8 +644,8 @@ const PizzaBuilder = () => {
                       <div key={sauce.id} className="col-md-6">
                         <div
                           className={`card h-100 cursor-pointer transition-all ${pizza.sauce === sauce.id
-                              ? 'border-primary shadow-lg'
-                              : 'border-light hover-shadow'
+                            ? 'border-primary shadow-lg'
+                            : 'border-light hover-shadow'
                             }`}
                           onClick={() => updatePizza('sauce', sauce.id)}
                           style={{
@@ -685,8 +685,8 @@ const PizzaBuilder = () => {
                       <div key={cheese.id} className="col-md-6">
                         <div
                           className={`card h-100 cursor-pointer transition-all ${pizza.cheese === cheese.id
-                              ? 'border-primary shadow-lg'
-                              : 'border-light hover-shadow'
+                            ? 'border-primary shadow-lg'
+                            : 'border-light hover-shadow'
                             }`}
                           onClick={() => updatePizza('cheese', cheese.id)}
                           style={{
@@ -727,8 +727,8 @@ const PizzaBuilder = () => {
                       <div key={topping.id} className="col-md-6">
                         <div
                           className={`card h-100 cursor-pointer transition-all ${pizza.toppings.includes(topping.id)
-                              ? 'border-success shadow-lg'
-                              : 'border-light hover-shadow'
+                            ? 'border-success shadow-lg'
+                            : 'border-light hover-shadow'
                             }`}
                           onClick={() => toggleTopping(topping.id)}
                           style={{
@@ -768,8 +768,8 @@ const PizzaBuilder = () => {
                       <div key={topping.id} className="col-md-6">
                         <div
                           className={`card h-100 cursor-pointer transition-all ${pizza.toppings.includes(topping.id)
-                              ? 'border-success shadow-lg'
-                              : 'border-light hover-shadow'
+                            ? 'border-success shadow-lg'
+                            : 'border-light hover-shadow'
                             }`}
                           onClick={() => toggleTopping(topping.id)}
                           style={{
@@ -809,8 +809,8 @@ const PizzaBuilder = () => {
                       <div key={topping.id} className="col-md-6">
                         <div
                           className={`card h-100 cursor-pointer transition-all ${pizza.toppings.includes(topping.id)
-                              ? 'border-warning shadow-lg'
-                              : 'border-light hover-shadow'
+                            ? 'border-warning shadow-lg'
+                            : 'border-light hover-shadow'
                             }`}
                           onClick={() => toggleTopping(topping.id)}
                           style={{
@@ -929,7 +929,7 @@ const PizzaBuilder = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .transition-all {
           transition: all 0.3s ease;
         }
