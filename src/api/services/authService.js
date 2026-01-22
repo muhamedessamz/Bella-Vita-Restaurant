@@ -152,6 +152,40 @@ const authService = {
     },
 
     /**
+     * Update user profile
+     * @param {Object} profileData - New profile data
+     * @returns {Promise} Updated user data
+     */
+    updateProfile: async (profileData) => {
+        try {
+            const response = await apiClient.put(ENDPOINTS.USER.UPDATE_PROFILE, profileData);
+
+            // Update stored user data if successful
+            if (response.user) {
+                localStorage.setItem('user', JSON.stringify(response.user));
+            }
+
+            return response;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
+     * Change user password
+     * @param {Object} passwordData - Current and new passwords
+     * @returns {Promise}
+     */
+    changePassword: async (passwordData) => {
+        try {
+            const response = await apiClient.put(ENDPOINTS.USER.CHANGE_PASSWORD, passwordData);
+            return response;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    /**
      * Check if user is authenticated
      * @returns {boolean}
      */

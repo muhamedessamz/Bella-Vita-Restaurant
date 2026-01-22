@@ -1,62 +1,62 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaClock, FaBox, FaCheckCircle, FaTimesCircle, FaMapMarkerAlt, FaReceipt } from 'react-icons/fa';
+import { FaClock, FaBox, FaCheckCircle, FaTimesCircle, FaMapMarkerAlt, FaReceipt, FaSpinner, FaMotorcycle, FaUtensils } from 'react-icons/fa'; // Added icons
+import orderService from '../../api/services/orderService';
 
 const Orders = () => {
-    // This would eventually be fetched from the backend API
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    const statusMap = {
+        0: 'Pending',
+        1: 'Confirmed',
+        2: 'Preparing',
+        3: 'Ready',
+        4: 'OutForDelivery',
+        5: 'Delivered',
+        6: 'Cancelled',
+        7: 'Rejected'
+    };
 
     useEffect(() => {
-        // Simulating API fetch
-        setTimeout(() => {
-            const mockOrders = [
-                {
-                    id: 'ORD-7829',
-                    date: '2023-11-15T19:30:00',
-                    status: 'Delivered',
-                    total: 45.50,
-                    items: [
-                        { name: 'Pizza Margherita', quantity: 1, price: 14.99 },
-                        { name: 'Spaghetti Carbonara', quantity: 2, price: 15.25 }
-                    ],
-                    address: '123 Main St, Apt 4B'
-                },
-                {
-                    id: 'ORD-7810',
-                    date: '2023-11-02T13:15:00',
-                    status: 'Processing',
-                    total: 32.00,
-                    items: [
-                        { name: 'Caesar Salad', quantity: 1, price: 12.00 },
-                        { name: 'Grilled Salmon', quantity: 1, price: 20.00 }
-                    ],
-                    address: 'Pickup'
-                },
-                {
-                    id: 'ORD-7755',
-                    date: '2023-10-25T20:00:00',
-                    status: 'Cancelled',
-                    total: 28.50,
-                    items: [
-                        { name: 'Mushroom Risotto', quantity: 2, price: 14.25 }
-                    ],
-                    address: '456 Oak Ave'
-                }
-            ];
-            setOrders(mockOrders);
-            setLoading(false);
-        }, 1000);
+        const fetchOrders = async () => {
+            try {
+                const response = await orderService.getUserOrders();
+                const ordersData = Array.isArray(response) ? response : (response.data || []);
+
+                // Sort by date descending
+                ordersData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+                setOrders(ordersData);
+                setLoading(false);
+            } catch (err) {
+                console.error("Failed to fetch orders:", err);
+                setError("Failed to load orders. Please try again later.");
+                setLoading(false);
+            }
+        };
+
+        fetchOrders();
     }, []);
 
-    const getStatusBadge = (status) => {
-        switch (status) {
+    const getStatusBadge = (statusEnum) => {
+        const status = statusMap[statusEnum] || 'Unknown';
+
+        switch (status) { // Match against string values
             case 'Delivered':
                 return <span className="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2"><FaCheckCircle className="me-2" />Delivered</span>;
-            case 'Processing':
-                return <span className="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2"><FaClock className="me-2" />In Progress</span>;
+            case 'Pending':
+            case 'Confirmed':
+                return <span className="badge bg-warning bg-opacity-10 text-warning rounded-pill px-3 py-2"><FaClock className="me-2" />{status}</span>;
+            case 'Preparing':
+            case 'Ready':
+                return <span className="badge bg-info bg-opacity-10 text-info rounded-pill px-3 py-2"><FaUtensils className="me-2" />{status}</span>;
+            case 'OutForDelivery':
+                return <span className="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2"><FaMotorcycle className="me-2" />Out For Delivery</span>;
             case 'Cancelled':
-                return <span className="badge bg-danger bg-opacity-10 text-danger rounded-pill px-3 py-2"><FaTimesCircle className="me-2" />Cancelled</span>;
+            case 'Rejected':
+                return <span className="badge bg-danger bg-opacity-10 text-danger rounded-pill px-3 py-2"><FaTimesCircle className="me-2" />{status}</span>;
             default:
                 return <span className="badge bg-secondary bg-opacity-10 text-secondary rounded-pill px-3 py-2">{status}</span>;
         }
@@ -69,6 +69,22 @@ const Orders = () => {
                     <span className="visually-hidden">Loading...</span>
                 </div>
                 <p className="mt-3 text-muted">Loading your orders...</p>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="container py-5 mt-5 text-center">
+                <div className="alert alert-danger" role="alert">
+                    {error}
+                </div>
+                <button
+                    onClick={() => window.location.reload()}
+                    className="btn btn-outline-primary mt-3"
+                >
+                    Try Again
+                </button>
             </div>
         );
     }
@@ -98,10 +114,10 @@ const Orders = () => {
                                             <div>
                                                 <div className="d-flex align-items-center gap-3 mb-1">
                                                     <h5 className="mb-0 fw-bold">#{order.id}</h5>
-                                                    {getStatusBadge(order.status)}
+                                                    {getStatusBadge(order.orderStatus)}
                                                 </div>
                                                 <small className="text-muted">
-                                                    {new Date(order.date).toLocaleDateString('en-US', {
+                                                    {new Date(order.createdAt).toLocaleDateString('en-US', {
                                                         weekday: 'long',
                                                         year: 'numeric',
                                                         month: 'long',
@@ -112,8 +128,8 @@ const Orders = () => {
                                                 </small>
                                             </div>
                                             <div className="text-end">
-                                                <div className="h4 mb-0 fw-bold text-primary">${order.total.toFixed(2)}</div>
-                                                <small className="text-muted">{order.items.reduce((acc, item) => acc + item.quantity, 0)} items</small>
+                                                <div className="h4 mb-0 fw-bold text-primary">${order.totalAmount?.toFixed(2)}</div>
+                                                <small className="text-muted">{order.orderItems?.reduce((acc, item) => acc + item.quantity, 0) || 0} items</small>
                                             </div>
                                         </div>
                                     </div>
@@ -122,22 +138,22 @@ const Orders = () => {
                                             <div className="col-md-8">
                                                 <h6 className="text-muted small fw-bold text-uppercase mb-3">Order Items</h6>
                                                 <ul className="list-unstyled mb-0">
-                                                    {order.items.map((item, index) => (
+                                                    {order.orderItems?.map((item, index) => (
                                                         <li key={index} className="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom border-light">
                                                             <div className="d-flex align-items-center gap-2">
                                                                 <span className="badge bg-dark rounded-circle" style={{ width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>{item.quantity}</span>
-                                                                <span>{item.name}</span>
+                                                                <span>{item.productName || item.name}</span>
                                                             </div>
-                                                            <span className="fw-semibold">${item.price.toFixed(2)}</span>
+                                                            <span className="fw-semibold">${item.price?.toFixed(2)}</span>
                                                         </li>
-                                                    ))}
+                                                    )) || <li className="text-muted">No items found</li>}
                                                 </ul>
                                             </div>
                                             <div className="col-md-4">
                                                 <h6 className="text-muted small fw-bold text-uppercase mb-3">Delivery Details</h6>
                                                 <div className="d-flex align-items-start gap-2 text-muted">
                                                     <FaMapMarkerAlt className="mt-1" />
-                                                    <span>{order.address}</span>
+                                                    <span>{order.address || 'Standard Delivery'}</span>
                                                 </div>
                                             </div>
                                         </div>

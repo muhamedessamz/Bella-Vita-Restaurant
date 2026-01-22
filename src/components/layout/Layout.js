@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import FloatingButton from '../common/FloatingButton';
 
 const Layout = () => {
   return (
@@ -16,6 +17,7 @@ const Layout = () => {
         <Outlet />
       </main>
       <Footer />
+      <FloatingButton />
     </div>
   );
 };

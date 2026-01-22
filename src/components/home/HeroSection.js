@@ -21,82 +21,44 @@ const HeroSection = () => {
         <div className="container position-relative h-100 d-flex align-items-center justify-content-center">
           <div className="row justify-content-center text-center w-100">
             <div className="col-lg-10 col-xl-8">
-              <h1 className="display-2 fw-bold mb-4 text-white" style={{
+              <h1 className="display-1 fw-bold mb-4 text-white" style={{
                 fontFamily: "'Playfair Display', serif",
-                fontSize: 'clamp(3rem, 8vw, 5rem)',
-                textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
-                letterSpacing: '2px'
+                fontSize: 'clamp(3.5rem, 10vw, 6rem)',
+                letterSpacing: '-1px'
               }}>
                 Bella Vita
               </h1>
-              <div className="divider mx-auto mb-4" style={{
-                width: '100px',
-                height: '4px',
-                background: 'linear-gradient(90deg, transparent, #e74c3c, transparent)',
-                borderRadius: '2px'
-              }}></div>
               <p className="lead mb-5 text-white text-center" style={{
-                fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
+                fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)',
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: '300',
-                textShadow: '1px 1px 2px rgba(0,0,0,0.7)',
-                lineHeight: '1.4',
-                maxWidth: '600px',
+                opacity: '0.9',
+                maxWidth: '500px',
                 margin: '0 auto 3rem'
               }}>
-                Experience the <span style={{ color: '#e74c3c', fontWeight: '500' }}>Authentic Taste</span> of Italy
-                <br />
-                <small style={{ fontSize: '0.9em', opacity: '0.9', color: 'white' }}>
-                  Where tradition meets culinary excellence
-                </small>
+                Authentic Italian flavors. Unforgettable moments.
               </p>
-              <div className="d-flex gap-3 justify-content-center flex-column flex-md-row align-items-center">
+              <div className="d-flex justify-content-center">
                 <Link to="/menu" className="btn btn-lg px-5 py-3" style={{
-                  backgroundColor: '#e74c3c',
-                  borderColor: '#e74c3c',
-                  color: 'white',
+                  backgroundColor: '#fff',
+                  color: '#2c3e50',
                   borderRadius: '50px',
                   fontWeight: '600',
-                  fontSize: '1.1rem',
+                  fontSize: '1rem',
                   textDecoration: 'none',
                   transition: 'all 0.3s ease',
-                  boxShadow: '0 4px 15px rgba(231, 76, 60, 0.3)'
+                  border: 'none',
+                  boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
                 }}
                   onMouseEnter={(e) => {
-                    e.target.style.backgroundColor = '#c0392b';
                     e.target.style.transform = 'translateY(-2px)';
-                    e.target.style.boxShadow = '0 8px 25px rgba(231, 76, 60, 0.4)';
+                    e.target.style.boxShadow = '0 6px 20px rgba(0,0,0,0.15)';
                   }}
                   onMouseLeave={(e) => {
-                    e.target.style.backgroundColor = '#e74c3c';
                     e.target.style.transform = 'translateY(0)';
-                    e.target.style.boxShadow = '0 4px 15px rgba(231, 76, 60, 0.3)';
+                    e.target.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
                   }}>
-                  <FaUtensils className="me-2" /> View Menu
-                </Link>
-                <Link to="/reservations" className="btn btn-outline-light btn-lg px-5 py-3" style={{
-                  borderColor: 'rgba(255,255,255,0.8)',
-                  color: 'white',
-                  borderRadius: '50px',
-                  fontWeight: '600',
-                  fontSize: '1.1rem',
-                  textDecoration: 'none',
-                  transition: 'all 0.3s ease',
-                  borderWidth: '2px'
-                }}
-                  onMouseEnter={(e) => {
-                    e.target.style.backgroundColor = 'white';
-                    e.target.style.color = '#2c3e50';
-                    e.target.style.transform = 'translateY(-2px)';
-                    e.target.style.boxShadow = '0 8px 25px rgba(255,255,255,0.3)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.backgroundColor = 'transparent';
-                    e.target.style.color = 'white';
-                    e.target.style.transform = 'translateY(0)';
-                    e.target.style.boxShadow = 'none';
-                  }}>
-                  <FaCalendarAlt className="me-2" /> Make a Reservation
+                  View Menu
                 </Link>
               </div>
             </div>

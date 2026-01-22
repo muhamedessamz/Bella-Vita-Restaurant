@@ -15,9 +15,9 @@ export const ENDPOINTS = {
 
     // User Management
     USER: {
-        PROFILE: '/users/me',
-        UPDATE_PROFILE: '/users/me',
-        CHANGE_PASSWORD: '/users/me/password',
+        PROFILE: '/auth/profile', // Using auth controller for profile
+        UPDATE_PROFILE: '/auth/profile',
+        CHANGE_PASSWORD: '/auth/change-password',
         ADDRESSES: '/users/me/addresses',
         ADD_ADDRESS: '/users/me/addresses',
         UPDATE_ADDRESS: (id) => `/users/me/addresses/${id}`,

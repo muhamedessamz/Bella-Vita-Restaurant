@@ -272,7 +272,7 @@ const Checkout = () => {
                                     <div className="card-body p-4">
                                         <h5 className="mb-3">Payment Method</h5>
                                         <div className="row g-3">
-                                            <div className="col-md-6">
+                                            <div className="col-12">
                                                 <label className={`card border ${formData.paymentMethod === 0 ? 'border-primary' : ''} h-100 cursor-pointer`}>
                                                     <input
                                                         type="radio"
@@ -284,25 +284,8 @@ const Checkout = () => {
                                                     />
                                                     <div className="card-body text-center">
                                                         <FaMoneyBillWave size={32} className={formData.paymentMethod === 0 ? 'text-primary' : 'text-muted'} />
-                                                        <h6 className="mt-2 mb-0">Cash</h6>
-                                                        <small className="text-muted">Pay on delivery/pickup</small>
-                                                    </div>
-                                                </label>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <label className={`card border ${formData.paymentMethod === 1 ? 'border-primary' : ''} h-100 cursor-pointer`}>
-                                                    <input
-                                                        type="radio"
-                                                        name="paymentMethod"
-                                                        value="1"
-                                                        checked={formData.paymentMethod === 1}
-                                                        onChange={handleInputChange}
-                                                        className="d-none"
-                                                    />
-                                                    <div className="card-body text-center">
-                                                        <FaCreditCard size={32} className={formData.paymentMethod === 1 ? 'text-primary' : 'text-muted'} />
-                                                        <h6 className="mt-2 mb-0">Credit Card</h6>
-                                                        <small className="text-muted">Coming soon</small>
+                                                        <h6 className="mt-2 mb-0">Cash on Delivery / Pickup</h6>
+                                                        <small className="text-muted">Pay when you receive your order</small>
                                                     </div>
                                                 </label>
                                             </div>

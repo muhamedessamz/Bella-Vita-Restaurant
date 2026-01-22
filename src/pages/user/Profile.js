@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { authService } from '../../api/services';
 
 const Profile = () => {
-    const { user } = useAuth();
+    const { user, updateUser } = useAuth();
 
     // State for form fields - initialized with user data
     const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ const Profile = () => {
 
     const [isEditing, setIsEditing] = useState(false);
     const [message, setMessage] = useState({ type: '', text: '' });
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
         setFormData({
@@ -25,19 +27,63 @@ const Profile = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Logic to update profile would go here
-        setMessage({ type: 'success', text: 'Profile updated successfully!' });
-        setIsEditing(false);
+        setMessage({ type: '', text: '' });
+        setLoading(true);
 
-        // Clear password fields
-        setFormData(prev => ({
-            ...prev,
-            currentPassword: '',
-            newPassword: '',
-            confirmPassword: ''
-        }));
+        try {
+            // 1. Update Profile Details
+            const profileData = {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                phoneNumber: formData.phone
+            };
+
+            const profileResponse = await authService.updateProfile(profileData);
+
+            // Update context user if successful
+            if (profileResponse.user) {
+                updateUser(profileResponse.user);
+            }
+
+            // 2. Change Password (if fields are filled)
+            if (formData.newPassword) {
+                if (formData.newPassword !== formData.confirmPassword) {
+                    throw new Error("New passwords do not match");
+                }
+
+                if (!formData.currentPassword) {
+                    throw new Error("Current password is required to set a new password");
+                }
+
+                await authService.changePassword({
+                    currentPassword: formData.currentPassword,
+                    newPassword: formData.newPassword,
+                    confirmNewPassword: formData.confirmPassword
+                });
+            }
+
+            setMessage({ type: 'success', text: 'Profile updated successfully!' });
+            setIsEditing(false);
+
+            // Clear password fields
+            setFormData(prev => ({
+                ...prev,
+                currentPassword: '',
+                newPassword: '',
+                confirmPassword: ''
+            }));
+
+        } catch (error) {
+            console.error(error);
+            setMessage({
+                type: 'danger',
+                text: error.response?.data?.message || error.message || 'Failed to update profile'
+            });
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (

@@ -12,11 +12,9 @@ const Home = () => {
     <div className="home-page">
       <HeroSection />
       <FeaturedDishes />
-      <PizzaBuilderTeaser />
       <WhyChooseUs />
       <Testimonials />
       <ContactCTA />
-      <Newsletter />
     </div>
   );
 };
