@@ -57,7 +57,7 @@ const Cart = () => {
 
   if (items.length === 0) {
     return (
-      <div style={{ paddingTop: '100px' }}>
+      <div className="page-bg" style={{ paddingTop: '100px' }}>
         <div className="container py-5">
           <div className="row justify-content-center">
             <div className="col-lg-8 text-center">
@@ -94,7 +94,7 @@ const Cart = () => {
   }
 
   return (
-    <div style={{ paddingTop: '100px' }}>
+    <div className="page-bg" style={{ paddingTop: '100px' }}>
       <div className="container py-5">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -114,7 +114,7 @@ const Cart = () => {
                 </button>
               </div>
 
-              <div className="card border-0 shadow-sm" style={{ borderRadius: '20px' }}>
+              <div className="card glass-card border-0" style={{ overflow: 'hidden' }}>
                 <div className="card-body p-0">
                   {items.map((item, index) => (
                     <motion.div
@@ -273,8 +273,8 @@ const Cart = () => {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
-                className="card border-0 shadow-sm sticky-top"
-                style={{ borderRadius: '20px', top: '128px', marginTop: '28px' }}
+                className="card glass-card border-0 sticky-top"
+                style={{ top: '128px', marginTop: '28px' }}
               >
                 <div className="card-body p-4">
                   <h4 className="mb-4">Order Summary</h4>

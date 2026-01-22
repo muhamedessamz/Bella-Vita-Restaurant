@@ -171,7 +171,7 @@ const Menu = () => {
   };
 
   return (
-    <div style={{ paddingTop: '100px' }}>
+    <div className="page-bg" style={{ paddingTop: '100px' }}>
       <div className="menu-page py-5">
         <div className="container">
           {/* Hero Section */}

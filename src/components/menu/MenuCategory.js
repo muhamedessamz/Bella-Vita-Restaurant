@@ -124,22 +124,20 @@ const MenuCategory = ({ item }) => {
   };
 
   return (
-    <div className="card border-0 shadow-sm d-flex flex-column" style={{
-      borderRadius: '15px',
+    <div className="card glass-card border-0 h-100" style={{
       overflow: 'hidden',
       transition: 'all 0.3s ease',
       cursor: 'pointer',
-      height: '100%',
       minHeight: '500px'
     }}
-    onMouseEnter={(e) => {
-      e.currentTarget.style.transform = 'translateY(-8px)';
-      e.currentTarget.style.boxShadow = '0 15px 35px rgba(0,0,0,0.15)';
-    }}
-    onMouseLeave={(e) => {
-      e.currentTarget.style.transform = 'translateY(0)';
-      e.currentTarget.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
-    }}>
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'translateY(-8px)';
+        e.currentTarget.style.boxShadow = '0 25px 50px rgba(0,0,0,0.15)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.boxShadow = '';
+      }}>
       <div className="position-relative">
         {/* Item Image */}
         <div
@@ -205,7 +203,7 @@ const MenuCategory = ({ item }) => {
           </div>
         </div>
       </div>
-      
+
       {/* Item Details */}
       <div className="card-body d-flex flex-column p-4" style={{ flex: '1' }}>
         <div className="mb-3">
@@ -223,7 +221,7 @@ const MenuCategory = ({ item }) => {
           lineHeight: '1.5',
           flex: '1'
         }}>{item.description}</p>
-        
+
         {/* Customization Options (if any) */}
         {item.options && item.options.length > 0 && (
           <div className="mb-3">

@@ -207,6 +207,10 @@ a:hover {
   color: var(--accent) !important;
 }
 
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
 .bg-primary {
   background-color: var(--primary) !important;
 }

@@ -41,7 +41,7 @@ const Checkout = () => {
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
-            [name]: value
+            [name]: (name === 'orderType' || name === 'paymentMethod') ? parseInt(value) : value
         }));
     };
 
@@ -126,7 +126,7 @@ const Checkout = () => {
     }
 
     return (
-        <div style={{ paddingTop: '100px' }}>
+        <div className="page-bg" style={{ paddingTop: '100px' }}>
             <div className="container py-5">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -140,7 +140,7 @@ const Checkout = () => {
                             {/* Left Column - Order Details */}
                             <div className="col-lg-8">
                                 {/* Order Type */}
-                                <div className="card border-0 shadow-sm mb-4" style={{ borderRadius: '20px' }}>
+                                <div className="card glass-card border-0 mb-4">
                                     <div className="card-body p-4">
                                         <h5 className="mb-3">Order Type</h5>
                                         <div className="row g-3">
@@ -198,7 +198,7 @@ const Checkout = () => {
 
                                 {/* Delivery Address - Only show if Delivery is selected */}
                                 {formData.orderType === 2 && (
-                                    <div className="card border-0 shadow-sm mb-4" style={{ borderRadius: '20px' }}>
+                                    <div className="card glass-card border-0 mb-4">
                                         <div className="card-body p-4">
                                             <h5 className="mb-3">Delivery Address</h5>
                                             <div className="row g-3">
@@ -268,7 +268,7 @@ const Checkout = () => {
                                 )}
 
                                 {/* Payment Method */}
-                                <div className="card border-0 shadow-sm mb-4" style={{ borderRadius: '20px' }}>
+                                <div className="card glass-card border-0 mb-4">
                                     <div className="card-body p-4">
                                         <h5 className="mb-3">Payment Method</h5>
                                         <div className="row g-3">
@@ -294,7 +294,7 @@ const Checkout = () => {
                                 </div>
 
                                 {/* Special Instructions */}
-                                <div className="card border-0 shadow-sm mb-4" style={{ borderRadius: '20px' }}>
+                                <div className="card glass-card border-0 mb-4">
                                     <div className="card-body p-4">
                                         <h5 className="mb-3">Special Instructions</h5>
                                         <textarea
@@ -311,7 +311,7 @@ const Checkout = () => {
 
                             {/* Right Column - Order Summary */}
                             <div className="col-lg-4">
-                                <div className="card border-0 shadow-sm sticky-top" style={{ borderRadius: '20px', top: '120px' }}>
+                                <div className="card glass-card border-0 sticky-top" style={{ top: '120px' }}>
                                     <div className="card-body p-4">
                                         <h5 className="mb-4">Order Summary</h5>
 

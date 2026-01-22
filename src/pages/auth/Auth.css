@@ -1,12 +1,9 @@
 .auth-page {
-    min-height: calc(100vh - 200px);
+    min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 5rem 0 3rem 0;
-    /* Added extra top padding to avoid navbar */
-    margin-top: 70px;
-    /* Space from navbar */
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 0;
+    margin: 0;
 }
 
 .auth-card {

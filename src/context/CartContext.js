@@ -39,7 +39,7 @@ const cartReducer = (state, action) => {
   switch (action.type) {
     case 'ADD_TO_CART':
       const existingItem = state.items.find(item => item.id === action.payload.id);
-      
+
       if (existingItem) {
         return {
           ...state,
@@ -89,25 +89,21 @@ const cartReducer = (state, action) => {
   }
 };
 
-const initialState = {
-  items: []
+const initCart = () => {
+  const savedCart = localStorage.getItem('restaurant-cart');
+  if (savedCart) {
+    try {
+      const parsedItems = JSON.parse(savedCart);
+      return { items: parsedItems.map(normalizeCartItem) };
+    } catch (error) {
+      console.error('Error loading cart from localStorage:', error);
+    }
+  }
+  return { items: [] };
 };
 
 export const CartProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(cartReducer, initialState);
-
-  // Load cart from localStorage on mount
-  useEffect(() => {
-    const savedCart = localStorage.getItem('restaurant-cart');
-    if (savedCart) {
-      try {
-        const cartData = JSON.parse(savedCart);
-        dispatch({ type: 'LOAD_CART', payload: cartData });
-      } catch (error) {
-        console.error('Error loading cart from localStorage:', error);
-      }
-    }
-  }, []);
+  const [state, dispatch] = useReducer(cartReducer, null, initCart);
 
   // Save cart to localStorage whenever it changes
   useEffect(() => {

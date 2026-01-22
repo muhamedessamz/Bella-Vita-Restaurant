@@ -411,7 +411,7 @@ const CartDropdown = () => {
                     View Cart
                   </Link>
                   <Link
-                    to="/online-ordering"
+                    to="/checkout"
                     className="btn btn-outline-primary"
                     style={{
                       borderColor: '#e74c3c',
