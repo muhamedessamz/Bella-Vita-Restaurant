@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaShoppingCart, FaCreditCard, FaMoneyBillWave, FaTruck, FaStore, FaUtensils } from 'react-icons/fa';
+import { FaMoneyBillWave, FaTruck, FaStore, FaUtensils, FaTag } from 'react-icons/fa';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../hooks';
 import { orderService } from '../api/services';
+import couponService from '../api/services/couponService';
 import { toast } from 'react-toastify';
 
 const Checkout = () => {
     const navigate = useNavigate();
     const { items, getCartTotal, clearCart } = useCart();
-    const { user, isAuthenticated } = useAuth();
+    const { isAuthenticated } = useAuth();
 
     const [loading, setLoading] = useState(false);
+    const [couponCode, setCouponCode] = useState('');
+    const [appliedCoupon, setAppliedCoupon] = useState(null);
+    const [verifyingCoupon, setVerifyingCoupon] = useState(false);
+
     const [formData, setFormData] = useState({
         orderType: 2, // Delivery
         paymentMethod: 0, // Cash
@@ -56,15 +61,52 @@ const Checkout = () => {
         }));
     };
 
+    const handleApplyCoupon = async () => {
+        if (!couponCode.trim()) return;
+
+        try {
+            setVerifyingCoupon(true);
+            const subtotal = getCartTotal();
+            const response = await couponService.validateCoupon(couponCode, subtotal);
+
+            setAppliedCoupon(response);
+            toast.success(`Coupon applied! Saved: ${response.discountAmount ? '$' + response.discountAmount : response.discountPercentage + '%'}`);
+        } catch (error) {
+            console.error('Coupon error:', error);
+            setAppliedCoupon(null);
+            toast.error(error.response?.data?.message || 'Invalid or expired coupon code');
+        } finally {
+            setVerifyingCoupon(false);
+        }
+    };
+
+    const removeCoupon = () => {
+        setAppliedCoupon(null);
+        setCouponCode('');
+        toast.info('Coupon removed');
+    };
+
     const calculateTotal = () => {
         const subtotal = getCartTotal();
-        const tax = subtotal * 0.08;
+        let discount = 0;
+
+        if (appliedCoupon) {
+            if (appliedCoupon.discountAmount) {
+                discount = appliedCoupon.discountAmount;
+            } else {
+                discount = subtotal * (appliedCoupon.discountPercentage / 100);
+            }
+        }
+
+        const tax = Math.max(0, subtotal - discount) * 0.08;
         const deliveryFee = formData.orderType === 2 ? 3.99 : 0; // Delivery fee only for delivery
+
         return {
             subtotal,
+            discount,
             tax,
             deliveryFee,
-            total: subtotal + tax + deliveryFee
+            total: Math.max(0, subtotal + tax + deliveryFee - discount)
         };
     };
 
@@ -88,6 +130,7 @@ const Checkout = () => {
                 orderType: parseInt(formData.orderType),
                 paymentMethod: parseInt(formData.paymentMethod),
                 specialInstructions: formData.specialInstructions || null,
+                couponCode: appliedCoupon ? appliedCoupon.code : null,
                 items: items.map(item => ({
                     menuItemId: item.id,
                     quantity: item.quantity
@@ -96,8 +139,6 @@ const Checkout = () => {
 
             // Add delivery address if delivery type
             if (formData.orderType === 2) {
-                // For now, we'll include address in special instructions
-                // In a real app, you'd have a separate Address entity
                 const addressString = `${formData.deliveryAddress.street}, ${formData.deliveryAddress.city}, ${formData.deliveryAddress.state} ${formData.deliveryAddress.zipCode} | Phone: ${formData.deliveryAddress.phone}`;
                 orderData.specialInstructions = orderData.specialInstructions
                     ? `${orderData.specialInstructions} | Address: ${addressString}`
@@ -196,7 +237,7 @@ const Checkout = () => {
                                     </div>
                                 </div>
 
-                                {/* Delivery Address - Only show if Delivery is selected */}
+                                {/* Delivery Address */}
                                 {formData.orderType === 2 && (
                                     <div className="card glass-card border-0 mb-4">
                                         <div className="card-body p-4">
@@ -329,11 +370,61 @@ const Checkout = () => {
 
                                         <hr />
 
+                                        {/* Coupon Section */}
+                                        <div className="mb-4">
+                                            <label className="form-label d-flex align-items-center gap-2">
+                                                <FaTag className="text-primary" /> Promo Code
+                                            </label>
+                                            <div className="input-group">
+                                                <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    placeholder="Enter code"
+                                                    value={couponCode}
+                                                    onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+                                                    disabled={appliedCoupon}
+                                                />
+                                                {appliedCoupon ? (
+                                                    <button
+                                                        className="btn btn-outline-danger"
+                                                        type="button"
+                                                        onClick={removeCoupon}
+                                                    >
+                                                        Remove
+                                                    </button>
+                                                ) : (
+                                                    <button
+                                                        className="btn btn-primary"
+                                                        type="button"
+                                                        onClick={handleApplyCoupon}
+                                                        disabled={verifyingCoupon || !couponCode}
+                                                        style={{ backgroundColor: '#e74c3c', borderColor: '#e74c3c' }}
+                                                    >
+                                                        {verifyingCoupon ? <span className="spinner-border spinner-border-sm"></span> : 'Apply'}
+                                                    </button>
+                                                )}
+                                            </div>
+                                            {appliedCoupon && (
+                                                <small className="text-success d-block mt-1">
+                                                    Code {appliedCoupon.code} applied!
+                                                </small>
+                                            )}
+                                        </div>
+
+                                        <hr />
+
                                         {/* Totals */}
                                         <div className="d-flex justify-content-between mb-2">
                                             <span>Subtotal:</span>
                                             <span>${totals.subtotal.toFixed(2)}</span>
                                         </div>
+
+                                        {totals.discount > 0 && (
+                                            <div className="d-flex justify-content-between mb-2 text-success">
+                                                <span>Discount:</span>
+                                                <span>-${totals.discount.toFixed(2)}</span>
+                                            </div>
+                                        )}
 
                                         <div className="d-flex justify-content-between mb-2">
                                             <span>Tax (8%):</span>

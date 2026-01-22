@@ -18,7 +18,7 @@ const Profile = () => {
 
     const [isEditing, setIsEditing] = useState(false);
     const [message, setMessage] = useState({ type: '', text: '' });
-    const [loading, setLoading] = useState(false);
+    // const [loading, setLoading] = useState(false); // Removed unused state
 
     const handleChange = (e) => {
         setFormData({
@@ -30,7 +30,7 @@ const Profile = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMessage({ type: '', text: '' });
-        setLoading(true);
+        // setLoading(true);
 
         try {
             // 1. Update Profile Details
@@ -82,7 +82,7 @@ const Profile = () => {
                 text: error.response?.data?.message || error.message || 'Failed to update profile'
             });
         } finally {
-            setLoading(false);
+            // setLoading(false);
         }
     };
 

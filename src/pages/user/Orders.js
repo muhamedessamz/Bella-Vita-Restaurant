@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaClock, FaBox, FaCheckCircle, FaTimesCircle, FaMapMarkerAlt, FaReceipt, FaSpinner, FaMotorcycle, FaUtensils } from 'react-icons/fa'; // Added icons
+import { FaClock, FaBox, FaCheckCircle, FaTimesCircle, FaMapMarkerAlt, FaReceipt, FaMotorcycle, FaUtensils } from 'react-icons/fa'; // Added icons
 import orderService from '../../api/services/orderService';
 
 const Orders = () => {
