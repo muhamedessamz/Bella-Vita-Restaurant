@@ -49,7 +49,7 @@ const Reservations = () => {
     e.preventDefault();
     setError('');
 
-    if (!isAuthenticated()) {
+    if (!isAuthenticated) {
       navigate('/login', { state: { from: '/reservations' } });
       return;
     }
@@ -133,7 +133,7 @@ const Reservations = () => {
                     </div>
                   )}
 
-                  {!isAuthenticated() && (
+                  {!isAuthenticated && (
                     <div className="alert alert-info" role="alert">
                       Please <Link to="/login" state={{ from: '/reservations' }} className="alert-link">Sign In</Link> to make a reservation.
                     </div>
@@ -263,7 +263,7 @@ const Reservations = () => {
                           <button
                             type="submit"
                             className="btn btn-primary px-5 py-3"
-                            disabled={loading || !isAuthenticated()}
+                            disabled={loading || !isAuthenticated}
                             style={{
                               borderRadius: '50px',
                               fontWeight: '600',
