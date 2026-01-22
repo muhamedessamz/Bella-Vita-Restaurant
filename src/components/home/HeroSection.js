@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaUtensils, FaCalendarAlt } from 'react-icons/fa';
 
 const HeroSection = () => {
   return (

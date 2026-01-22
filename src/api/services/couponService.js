@@ -1,4 +1,4 @@
-import api from '../axiosConfig';
+import api from '../client';
 
 const validateCoupon = async (code, orderTotal) => {
     const response = await api.post('/coupons/validate', { code, orderTotal });
