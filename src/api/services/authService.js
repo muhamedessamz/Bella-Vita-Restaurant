@@ -18,6 +18,9 @@ const authService = {
             // Store token and user data
             if (response.token) {
                 localStorage.setItem('authToken', response.token);
+                if (response.refreshToken) {
+                    localStorage.setItem('refreshToken', response.refreshToken);
+                }
                 localStorage.setItem('user', JSON.stringify(response.user));
             }
 
@@ -43,6 +46,9 @@ const authService = {
             // Store token and user data
             if (response.token) {
                 localStorage.setItem('authToken', response.token);
+                if (response.refreshToken) {
+                    localStorage.setItem('refreshToken', response.refreshToken);
+                }
                 localStorage.setItem('user', JSON.stringify(response.user));
             }
 
@@ -62,12 +68,14 @@ const authService = {
 
             // Clear local storage
             localStorage.removeItem('authToken');
+            localStorage.removeItem('refreshToken');
             localStorage.removeItem('user');
 
             return { success: true };
         } catch (error) {
             // Clear local storage even if API call fails
             localStorage.removeItem('authToken');
+            localStorage.removeItem('refreshToken');
             localStorage.removeItem('user');
             throw error;
         }
@@ -86,6 +94,9 @@ const authService = {
 
             if (response.data.token) {
                 localStorage.setItem('authToken', response.data.token);
+                if (response.data.refreshToken) {
+                    localStorage.setItem('refreshToken', response.data.refreshToken);
+                }
             }
 
             return response;
