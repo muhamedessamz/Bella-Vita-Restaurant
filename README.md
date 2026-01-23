@@ -1,288 +1,98 @@
-# 🍝 Bella Vita Restaurant
+# Bella Vita Restaurant - Client Website
 
-> Authentic Italian Cuisine with International Influences
+## � Comprehensive Documentation
 
-[![React](https://img.shields.io/badge/React-18.2.0-blue.svg)](https://reactjs.org/)
-[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3.3-purple.svg)](https://getbootstrap.com/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-
-## 📋 Table of Contents
-
-- [About](#about)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [Available Scripts](#available-scripts)
-- [Documentation](#documentation)
-- [Environment Variables](#environment-variables)
-- [Contributing](#contributing)
-
-## 🎯 About
-
-Bella Vita is a modern, responsive restaurant website built with React. It offers a seamless user experience for browsing menus, making reservations, and ordering food online. The application features a beautiful Italian-inspired design with smooth animations and an intuitive interface.
-
-## ✨ Features
-
-- 🍕 **Interactive Menu** - Browse our extensive menu with filtering and search capabilities
-- 🛒 **Shopping Cart** - Add items to cart with real-time updates
-- 🍕 **Pizza Builder** - Create your custom pizza with our interactive builder
-- 📅 **Reservations** - Book a table online with our reservation system
-- 📱 **Responsive Design** - Fully responsive across all devices
-- 🎨 **Modern UI/UX** - Beautiful animations and smooth transitions
-- 🔍 **Advanced Search** - Search by dish name, ingredients, or dietary preferences
-- 🏷️ **Dietary Filters** - Filter menu items by dietary requirements (vegetarian, vegan, gluten-free, etc.)
-- 💾 **Persistent Cart** - Cart data saved in local storage
-- 🌐 **Multi-page Application** - Built with React Router for smooth navigation
-
-## 🛠️ Tech Stack
-
-### Core
-- **React** 18.2.0 - UI library
-- **React Router DOM** 6.18.0 - Client-side routing
-- **React Hook Form** 7.49.2 - Form management
-
-### Styling
-- **Bootstrap** 5.3.3 - CSS framework
-- **Framer Motion** 10.18.0 - Animation library
-- **Custom CSS** - Additional styling
-
-### UI Components
-- **React Icons** 5.0.1 - Icon library
-- **React Toastify** 10.0.4 - Toast notifications
-
-### Development
-- **React Scripts** 5.0.1 - Build tooling
-- **Testing Library** - Unit testing
-
-## 📁 Project Structure
-
-```
-Bella-Vita-Restaurant/
-├── public/
-│   ├── images/              # Static images (47 images)
-│   ├── index.html           # HTML template
-│   ├── manifest.json        # PWA manifest
-│   └── robots.txt           # SEO robots file
-│
-├── src/
-│   ├── components/          # React components
-│   │   ├── layout/          # Layout components
-│   │   │   ├── Navbar.js
-│   │   │   ├── Footer.js
-│   │   │   ├── Layout.js
-│   │   │   └── index.js
-│   │   ├── cart/            # Cart components
-│   │   │   ├── CartDropdown.js
-│   │   │   └── index.js
-│   │   ├── common/          # Shared components
-│   │   │   ├── ErrorBoundary.js
-│   │   │   └── index.js
-│   │   ├── home/            # Home page components
-│   │   │   ├── HeroSection.js
-│   │   │   ├── FeaturedDishes.js
-│   │   │   ├── PizzaBuilderTeaser.js
-│   │   │   ├── WhyChooseUs.js
-│   │   │   ├── Testimonials.js
-│   │   │   ├── ContactCTA.js
-│   │   │   └── Newsletter.js
-│   │   └── menu/            # Menu components
-│   │       └── MenuCategory.js
-│   │
-│   ├── pages/               # Page components
-│   │   ├── Home.js
-│   │   ├── Menu.js
-│   │   ├── Cart.js
-│   │   ├── OnlineOrder.js
-│   │   ├── Reservations.js
-│   │   ├── About.js
-│   │   ├── Contact.js
-│   │   ├── PizzaBuilder.js
-│   │   ├── PrivacyPolicy.js
-│   │   ├── TermsOfService.js
-│   │   └── NotFound.js
-│   │
-│   ├── context/             # React Context
-│   │   └── CartContext.js   # Shopping cart state management
-│   │
-│   ├── data/                # Static data
-│   │   └── menuData.js      # Menu items and categories
-│   │
-│   ├── styles/              # CSS files
-│   │   ├── components/      # Component-specific styles
-│   │   ├── pages/           # Page-specific styles
-│   │   │   └── Menu.css
-│   │   ├── ContentPagesFixes.css
-│   │   └── MenuPage.css
-│   │
-│   ├── utils/               # Utility functions
-│   │   └── dietaryUtils.js  # Dietary icon helpers
-│   │
-│   ├── constants/           # Application constants
-│   │   └── index.js         # Shared constants
-│   │
-│   ├── App.js               # Main App component
-│   ├── App.css              # App styles
-│   ├── index.js             # Entry point
-│   └── index.css            # Global styles
-│
-├── .gitignore               # Git ignore rules
-├── package.json             # Dependencies and scripts
-├── package-lock.json        # Dependency lock file
-└── README.md                # This file
-```
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- **Node.js** (v14 or higher)
-- **npm** (v6 or higher)
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/muhamedessamz/Bella-Vita-Restaurant.git
-   cd Bella-Vita-Restaurant
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Start the development server**
-   ```bash
-   npm start
-   ```
-
-4. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
-
-## 📜 Available Scripts
-
-### `npm start`
-Runs the app in development mode.  
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.  
-You may also see any lint errors in the console.
-
-### `npm test`
-Launches the test runner in interactive watch mode.
-
-### `npm run build`
-Builds the app for production to the `build` folder.  
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.  
-Your app is ready to be deployed!
-
-### `npm run lint`
-Runs ESLint to check code quality.
-
-## � Documentation
-
-For comprehensive documentation, please refer to the following files in the `docs/` folder:
-
-### 📖 [Complete Documentation](docs/DOCUMENTATION.md)
-Full technical documentation covering:
-- Project architecture
-- Component documentation
-- State management
-- Routing
-- Styling guide
-- API integration
-- Deployment guide
-- Best practices
-- Troubleshooting
-
-### 🔌 [API Specifications](docs/API_SPECIFICATIONS.md)
-Complete API documentation for backend implementation:
-- Authentication APIs
-- User Management
-- Menu Management
-- Order Management
-- Reservation APIs
-- Payment APIs
-- Admin Dashboard APIs
-- Analytics APIs
-- And more...
-
-### 🚀 [Future Improvements](docs/FUTURE_IMPROVEMENTS.md)
-Comprehensive list of planned features and enhancements:
-- Critical missing features
-- High priority improvements
-- Medium priority features
-- Technical improvements
-- UI/UX enhancements
-- Security enhancements
-- Future integrations
-- Roadmap suggestions
-
-## �🔐 Environment Variables
-
-Create a `.env` file in the root directory (optional):
-
-```env
-REACT_APP_API_URL=your_api_url_here
-REACT_APP_SITE_NAME=Bella Vita
-```
-
-## 🎨 Key Features Explained
-
-### Shopping Cart
-- Persistent cart using localStorage
-- Real-time cart updates
-- Quantity management
-- Price calculations
-
-### Menu System
-- Dynamic filtering by category
-- Search functionality
-- Dietary preference filters
-- Responsive grid layout
-
-### Pizza Builder
-- Interactive ingredient selection
-- Real-time price calculation
-- Custom pizza creation
-- Visual feedback
-
-### Reservations
-- Date and time selection
-- Party size options
-- Special requests
-- Form validation
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License.
-
-## 👨‍💻 Author
-
-**Mohamed Essam**
-- GitHub: [@muhamedessamz](https://github.com/muhamedessamz)
-- LinkedIn: [Mohamed Essam](https://www.linkedin.com/in/mohamedessamz/)
-
-## 🙏 Acknowledgments
-
-- Bootstrap for the UI framework
-- React Icons for the icon library
-- Framer Motion for animations
-- All contributors and supporters
+This document details the structure, state management, and component architecture of the customer-facing React application.
 
 ---
 
-**Made with ❤️ and 🍝**
+## 🏗 Architectural Pattern
+
+The application uses a **Component-Based Architecture** driven by **Context API** for global state management. It is designed to be responsive, accessible, and SEO-friendly.
+
+### Key Layers
+1.  **API Layer** (`src/api`): Centralized Axios instance with interceptors. Decouples UI from API logic.
+    -   **Interceptor**: Automatically attaches `Authorization: Bearer <token>` to requests.
+    -   **Services**: `authService`, `menuService`, `orderService`.
+2.  **State Management** (`src/context`):
+    -   `AuthContext`: Manages User Login/Logout, loading states, and token persistence.
+    -   `CartContext`: Manages shopping cart items, totals, and persistence (localStorage).
+3.  **Routing** (`src/router`):
+    -   Uses `react-router-dom` v6.
+    -   **Protected Routes**: Wrappers that redirect unauthenticated users.
+4.  **Components**:
+    -   **Pages**: Full views (Home, Menu, Checkout).
+    -   **Layouts**: `MainLayout` (Navbar + Footer), `AuthLayout`.
+    -   **Common**: Reusable UI (Button, Input, Modal, Spinner).
+
+---
+
+## � Project Structure
+
+```text
+Front/Website/
+├── public/                 # Static assets (images, index.html)
+├── src/
+│   ├── api/
+│   │   ├── client.js       # Axios Configuration
+│   │   ├── endpoints.js    # API URL Constants
+│   │   └── services/       # API call definitions
+│   ├── assets/             # Images, fonts
+│   ├── components/
+│   │   ├── common/         # Buttons, Inputs, Loaders
+│   │   ├── layout/         # Navbar, Footer
+│   │   ├── home/           # Home-specifc widgets
+│   │   └── menu/           # Menu cards, filters
+│   ├── context/            # Global State (Auth, Cart)
+│   ├── hooks/              # Custom Hooks (useDebounce, useAuth)
+│   ├── pages/              # Route Components
+│   │   ├── auth/           # Login, Register
+│   │   ├── checkout/       # Order process
+│   │   └── profile/        # User settings
+│   ├── styles/             # Global CSS / Variables
+│   ├── utils/              # Formatters, Validators
+│   └── App.js              # Root Component
+└── package.json            # Dependencies
+```
+
+---
+
+## 🧩 Key Features Implementation
+
+### 1. Authentication Flow
+-   **Login**: Submits credentials -> Stores `token` & `refreshToken` in `localStorage` -> Updates `AuthContext`.
+-   **Session Check**: On app load, `AuthContext` checks `localStorage`. If token exists, sets user as authenticated.
+-   **Logout**: Clears storage and resets Context state.
+
+### 2. Shopping Cart
+-   **Logic**: `CartContext` maintains an array of items.
+-   **Persistence**: `useEffect` watches cart state and saves to `localStorage` on change. This persists cart across refreshes.
+-   **Calculations**: Auto-calculates Subtotal, Tax, and Grand Total.
+
+### 3. Order Placement
+-   **Checkout**:
+    -   Collects Address, Phone, Payment Method.
+    -   Submits payload to `POST /api/orders`.
+    -   On success: Clears Cart -> Redirects to Order Success Page.
+
+---
+
+## 🛠 Configuration & Setup
+
+### Environment Variables
+Create `.env` in root:
+```env
+REACT_APP_API_URL=https://localhost:7066/api
+REACT_APP_NAME="Bella Vita"
+```
+
+### Scripts
+-   `npm start`: Dev server (Port 3000).
+-   `npm build`: Production build to `build/` folder.
+-   `npm test`: Run Jest tests.
+
+### Dependencies
+-   **axios**: HTTP Client.
+-   **react-router-dom**: Navigation.
+-   **react-icons**: Icon pack.
+-   **formik** / **yup**: Form validation (if used).
