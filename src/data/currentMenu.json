@@ -3,216 +3,360 @@
         "name": "Bruschetta al Pomodoro",
         "details": "Toasted bread topped with tomatoes, garlic, and fresh basil",
         "imagePath": "/images/Bruschetta-al-Pomodoro.jpg",
-        "category": "Antipasti"
+        "category": "Antipasti",
+        "price": 8.99,
+        "isVegetarian": true,
+        "isVegan": true,
+        "isGlutenFree": false
     },
     {
         "name": "Calamari Fritti",
         "details": "Crispy fried calamari served with marinara sauce and lemon wedges",
         "imagePath": "/images/Calamari-Fritti.jpg",
-        "category": "Antipasti"
+        "category": "Antipasti",
+        "price": 12.99,
+        "isVegetarian": false,
+        "isVegan": false,
+        "isGlutenFree": false
     },
     {
         "name": "Insalata Caprese",
         "details": "Fresh mozzarella, tomatoes, and basil drizzled with balsamic glaze",
         "imagePath": "/images/Insalat-Caprese.jpeg",
-        "category": "Antipasti"
+        "category": "Antipasti",
+        "price": 10.99,
+        "isVegetarian": true,
+        "isVegan": false,
+        "isGlutenFree": true
     },
     {
         "name": "Antipasto Misto",
         "details": "Selection of cured meats, cheeses, olives, and marinated vegetables",
         "imagePath": "/images/Antipasto-Misto.jpg",
-        "category": "Antipasti"
+        "category": "Antipasti",
+        "price": 15.99,
+        "isVegetarian": false,
+        "isVegan": false,
+        "isGlutenFree": false
     },
     {
         "name": "Arancini Siciliani",
         "details": "Crispy risotto balls stuffed with mozzarella and served with tomato sauce",
         "imagePath": "/images/Arancini-Siciliani.jpg",
-        "category": "Antipasti"
+        "category": "Antipasti",
+        "price": 9.99,
+        "isVegetarian": true,
+        "isVegan": false,
+        "isGlutenFree": false
     },
     {
         "name": "Spaghetti Carbonara",
         "details": "Classic Roman pasta with eggs, cheese, pancetta, and black pepper",
         "imagePath": "/images/Spaghetti-Carbonara.webp",
-        "category": "Pasta"
+        "category": "Pasta",
+        "price": 16.99,
+        "isVegetarian": false,
+        "isVegan": false,
+        "isGlutenFree": false
     },
     {
         "name": "Penne al Pomodoro e Basilico",
         "details": "Penne pasta with fresh tomato sauce, garlic, and basil",
         "imagePath": "/images/Penne-al-Pomodoro-e-Basilico.webp",
-        "category": "Pasta"
+        "category": "Pasta",
+        "price": 14.99,
+        "isVegetarian": true,
+        "isVegan": true,
+        "isGlutenFree": false
     },
     {
         "name": "Trofie al Pesto Genovese",
         "details": "Handmade trofie pasta with traditional basil pesto, potatoes, and green beans",
         "imagePath": "/images/Trofie-al-Pesto-Genovese.jpg",
-        "category": "Pasta"
+        "category": "Pasta",
+        "price": 15.99,
+        "isVegetarian": true,
+        "isVegan": false,
+        "isGlutenFree": false
     },
     {
         "name": "Lasagna della Casa",
         "details": "Traditional homemade lasagna with meat sauce, bechamel, and three cheeses",
         "imagePath": "/images/Lasagna-della-Casa.jpg",
-        "category": "Pasta"
+        "category": "Pasta",
+        "price": 18.99,
+        "isVegetarian": false,
+        "isVegan": false,
+        "isGlutenFree": false
     },
     {
         "name": "Ravioli di Ricotta e Spinaci",
         "details": "Homemade ravioli filled with ricotta and spinach in sage butter sauce",
         "imagePath": "/images/Ravioli-di-Ricotta-e-Spinaci.webp",
-        "category": "Pasta"
+        "category": "Pasta",
+        "price": 17.99,
+        "isVegetarian": true,
+        "isVegan": false,
+        "isGlutenFree": false
     },
     {
         "name": "Gnocchi alla Sorrentina",
         "details": "Potato gnocchi with tomato sauce, mozzarella, and fresh basil",
         "imagePath": "/images/Gnocchi-alla-Sorrentina.jpeg",
-        "category": "Pasta"
+        "category": "Pasta",
+        "price": 16.99,
+        "isVegetarian": true,
+        "isVegan": false,
+        "isGlutenFree": false
     },
     {
         "name": "Pizza Margherita",
         "details": "Classic pizza with tomato sauce, fresh mozzarella, and basil",
         "imagePath": "/images/MargheritaPizza.jpg",
-        "category": "Pizza"
+        "category": "Pizza",
+        "price": 14.99,
+        "isVegetarian": true,
+        "isVegan": false,
+        "isGlutenFree": false
     },
     {
         "name": "Quattro Formaggi",
         "details": "Four cheese pizza with mozzarella, gorgonzola, parmesan, and fontina",
         "imagePath": "/images/Quattro-Formaggi.jpg",
-        "category": "Pizza"
+        "category": "Pizza",
+        "price": 17.99,
+        "isVegetarian": true,
+        "isVegan": false,
+        "isGlutenFree": false
     },
     {
         "name": "Pizza Diavola",
         "details": "Spicy salami, tomato sauce, mozzarella, and chili flakes",
         "imagePath": "/images/Pizza-Diavola.jpg",
-        "category": "Pizza"
+        "category": "Pizza",
+        "price": 16.99,
+        "isVegetarian": false,
+        "isVegan": false,
+        "isGlutenFree": false
     },
     {
         "name": "Pizza Prosciutto e Funghi",
         "details": "Prosciutto di Parma, mushrooms, tomato sauce, and mozzarella",
         "imagePath": "/images/Pizza-Prosciutto-e-Funghi.png",
-        "category": "Pizza"
+        "category": "Pizza",
+        "price": 18.99,
+        "isVegetarian": false,
+        "isVegan": false,
+        "isGlutenFree": false
     },
     {
         "name": "Pizza Capricciosa",
         "details": "Ham, mushrooms, artichokes, olives, tomato sauce, and mozzarella",
         "imagePath": "/images/Pizza-Capricciosa.jpg",
-        "category": "Pizza"
+        "category": "Pizza",
+        "price": 17.99,
+        "isVegetarian": false,
+        "isVegan": false,
+        "isGlutenFree": false
     },
     {
         "name": "Pizza Vegetariana",
         "details": "Grilled vegetables, tomato sauce, mozzarella, and fresh herbs",
         "imagePath": "/images/Pizza-Vegetariana.jpeg",
-        "category": "Pizza"
+        "category": "Pizza",
+        "price": 15.99,
+        "isVegetarian": true,
+        "isVegan": false,
+        "isGlutenFree": false
     },
     {
         "name": "Osso Buco alla Milanese",
         "details": "Braised veal shanks with gremolata, served with saffron risotto",
         "imagePath": "/images/Osso-Buco-alla-Milanese.jpg",
-        "category": "Secondi Piatti"
+        "category": "Secondi Piatti",
+        "price": 28.99,
+        "isVegetarian": false,
+        "isVegan": false,
+        "isGlutenFree": true
     },
     {
         "name": "Branzino al Forno",
         "details": "Whole roasted Mediterranean sea bass with lemon, herbs, and seasonal vegetables",
         "imagePath": "/images/Branzino-al-Forno.webp",
-        "category": "Secondi Piatti"
+        "category": "Secondi Piatti",
+        "price": 32.99,
+        "isVegetarian": false,
+        "isVegan": false,
+        "isGlutenFree": true
     },
     {
         "name": "Melanzane alla Parmigiana",
         "details": "Layers of fried eggplant, tomato sauce, and melted cheese",
         "imagePath": "/images/Melanzane_alla_Parmigiana.jpg",
-        "category": "Secondi Piatti"
+        "category": "Secondi Piatti",
+        "price": 18.99,
+        "isVegetarian": true,
+        "isVegan": false,
+        "isGlutenFree": false
     },
     {
         "name": "Pollo alla Parmigiana",
         "details": "Breaded chicken breast topped with tomato sauce and melted mozzarella",
         "imagePath": "/images/pollo-alla-parmigiana.jpg",
-        "category": "Secondi Piatti"
+        "category": "Secondi Piatti",
+        "price": 24.99,
+        "isVegetarian": false,
+        "isVegan": false,
+        "isGlutenFree": false
     },
     {
         "name": "Risotto ai Funghi Porcini",
         "details": "Creamy Arborio rice with porcini mushrooms and Parmesan cheese",
         "imagePath": "/images/Risotto-ai-Funghi-Porcini.jpeg",
-        "category": "Secondi Piatti"
+        "category": "Secondi Piatti",
+        "price": 22.99,
+        "isVegetarian": true,
+        "isVegan": false,
+        "isGlutenFree": true
     },
     {
         "name": "Salmone alla Griglia",
         "details": "Grilled Atlantic salmon with lemon butter sauce and roasted vegetables",
         "imagePath": "/images/Salmone-alla-Griglia.jpg",
-        "category": "Secondi Piatti"
+        "category": "Secondi Piatti",
+        "price": 26.99,
+        "isVegetarian": false,
+        "isVegan": false,
+        "isGlutenFree": true
     },
     {
         "name": "Tiramisù",
         "details": "Classic Italian dessert with layers of coffee-soaked ladyfingers and mascarpone cream",
         "imagePath": "/images/tiramisu.jpg",
-        "category": "Dolci"
+        "category": "Dolci",
+        "price": 8.99,
+        "isVegetarian": true,
+        "isVegan": false,
+        "isGlutenFree": false
     },
     {
         "name": "Panna Cotta",
         "details": "Creamy vanilla custard with fresh berries and berry coulis",
         "imagePath": "/images/Panna-Cotta.jpg",
-        "category": "Dolci"
+        "category": "Dolci",
+        "price": 7.99,
+        "isVegetarian": true,
+        "isVegan": false,
+        "isGlutenFree": true
     },
     {
         "name": "Cannoli Siciliani",
         "details": "Crispy pastry shells filled with sweet ricotta and chocolate chips",
         "imagePath": "/images/cannoli_siciliani.jpg",
-        "category": "Dolci"
+        "category": "Dolci",
+        "price": 9.99,
+        "isVegetarian": true,
+        "isVegan": false,
+        "isGlutenFree": false
     },
     {
         "name": "Gelato Artigianale",
         "details": "Homemade Italian gelato - choice of vanilla, chocolate, strawberry, or pistachio",
         "imagePath": "/images/Gelato-Artigianale.webp",
-        "category": "Dolci"
+        "category": "Dolci",
+        "price": 6.99,
+        "isVegetarian": true,
+        "isVegan": false,
+        "isGlutenFree": true
     },
     {
         "name": "Affogato al Caffè",
         "details": "Vanilla gelato \"drowned\" in hot espresso with amaretti cookies",
         "imagePath": "/images/Affogato-al-Caffè.jpeg",
-        "category": "Dolci"
+        "category": "Dolci",
+        "price": 8.99,
+        "isVegetarian": true,
+        "isVegan": false,
+        "isGlutenFree": false
     },
     {
         "name": "Torta al Limoncello",
         "details": "Lemon sponge cake soaked in limoncello with mascarpone frosting",
         "imagePath": "/images/Torta-al-Limoncello.jpg",
-        "category": "Dolci"
+        "category": "Dolci",
+        "price": 9.99,
+        "isVegetarian": true,
+        "isVegan": false,
+        "isGlutenFree": false
     },
     {
         "name": "Espresso Italiano",
         "details": "Traditional Italian espresso made with premium beans",
         "imagePath": "/images/Espresso-Italiano.webp",
-        "category": "Bevande"
+        "category": "Bevande",
+        "price": 3.99,
+        "isVegetarian": true,
+        "isVegan": true,
+        "isGlutenFree": true
     },
     {
         "name": "Cappuccino",
         "details": "Classic Italian cappuccino with steamed milk and foam",
         "imagePath": "/images/Cappuccino.webp",
-        "category": "Bevande"
+        "category": "Bevande",
+        "price": 4.99,
+        "isVegetarian": true,
+        "isVegan": false,
+        "isGlutenFree": true
     },
     {
         "name": "Limonata della Casa",
         "details": "Homemade Italian lemonade with fresh lemons and mint",
         "imagePath": "/images/Limonata-della-Casa.jpg",
-        "category": "Bevande"
+        "category": "Bevande",
+        "price": 4.99,
+        "isVegetarian": true,
+        "isVegan": true,
+        "isGlutenFree": true
     },
     {
         "name": "Sangiovese (Glass)",
         "details": "Medium-bodied Italian red wine with cherry and earthy notes",
         "imagePath": "/images/Sangiovese.jpg",
-        "category": "Bevande"
+        "category": "Bevande",
+        "price": 9.99,
+        "isVegetarian": true,
+        "isVegan": true,
+        "isGlutenFree": true
     },
     {
         "name": "Prosecco di Valdobbiadene",
         "details": "Premium Italian sparkling wine with delicate bubbles",
         "imagePath": "/images/Prosecco-di-Valdobbiadene.webp",
-        "category": "Bevande"
+        "category": "Bevande",
+        "price": 8.99,
+        "isVegetarian": true,
+        "isVegan": true,
+        "isGlutenFree": true
     },
     {
         "name": "Aperol Spritz",
         "details": "Classic Italian aperitif with Aperol, Prosecco, and soda water",
         "imagePath": "/images/Aperol-Spritz.webp",
-        "category": "Bevande"
+        "category": "Bevande",
+        "price": 10.99,
+        "isVegetarian": true,
+        "isVegan": true,
+        "isGlutenFree": true
     },
     {
         "name": "Acqua Panna",
         "details": "Premium Italian still water",
         "imagePath": "/images/Acqua-Panna.png",
-        "category": "Bevande"
+        "category": "Bevande",
+        "price": 3.99,
+        "isVegetarian": true,
+        "isVegan": true,
+        "isGlutenFree": true
     }
 ]
