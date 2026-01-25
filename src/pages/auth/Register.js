@@ -58,7 +58,7 @@ const Register = () => {
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-md-8 col-lg-6">
-                        <div className="auth-card">
+                        <div className="auth-card text-start">
                             <div className="auth-header text-center mb-4">
                                 <h2>Create Account</h2>
                                 <p className="text-muted">Join the Bella Vita family</p>

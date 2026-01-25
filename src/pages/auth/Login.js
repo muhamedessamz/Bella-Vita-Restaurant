@@ -39,7 +39,7 @@ const Login = () => {
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-md-6 col-lg-5">
-                        <div className="auth-card">
+                        <div className="auth-card text-start">
                             <div className="auth-header text-center mb-4">
                                 <h2>Welcome Back</h2>
                                 <p className="text-muted">Sign in to your Bella Vita account</p>
