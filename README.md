@@ -1,98 +1,106 @@
-# Bella Vita Restaurant - Client Website
+# Bella Vita Restaurant - Customer Website
 
-## � Comprehensive Documentation
-
-This document details the structure, state management, and component architecture of the customer-facing React application.
+The **Customer Website** is the public-facing interface of the Bella Vita Restaurant. It provides a beautiful, responsive, and interactive experience for customers to explore the menu, book tables, and place food orders online.
 
 ---
 
-## 🏗 Architectural Pattern
+## 🛠 Technology Stack
 
-The application uses a **Component-Based Architecture** driven by **Context API** for global state management. It is designed to be responsive, accessible, and SEO-friendly.
-
-### Key Layers
-1.  **API Layer** (`src/api`): Centralized Axios instance with interceptors. Decouples UI from API logic.
-    -   **Interceptor**: Automatically attaches `Authorization: Bearer <token>` to requests.
-    -   **Services**: `authService`, `menuService`, `orderService`.
-2.  **State Management** (`src/context`):
-    -   `AuthContext`: Manages User Login/Logout, loading states, and token persistence.
-    -   `CartContext`: Manages shopping cart items, totals, and persistence (localStorage).
-3.  **Routing** (`src/router`):
-    -   Uses `react-router-dom` v6.
-    -   **Protected Routes**: Wrappers that redirect unauthenticated users.
-4.  **Components**:
-    -   **Pages**: Full views (Home, Menu, Checkout).
-    -   **Layouts**: `MainLayout` (Navbar + Footer), `AuthLayout`.
-    -   **Common**: Reusable UI (Button, Input, Modal, Spinner).
+-   **Framework:** React 18 (Create React App)
+-   **Language:** JavaScript / JSX
+-   **Styling:**
+    -   **CSS3:** Custom styling with CSS Variables for theming.
+    -   **Responsive Design:** Mobile-first approach.
+    -   **Animations:** Framer Motion (for smooth page transitions and micro-interactions).
+-   **State Management:** React Context API (AuthContext, CartContext).
+-   **Routing:** React Router DOM v6.
+-   **Forms:** React Hook Form (for validation and handling).
+-   **Notifications:** React Toastify.
+-   **HTTP Client:** Axios.
 
 ---
 
-## � Project Structure
+## 📦 Project Structure
 
-```text
-Front/Website/
-├── public/                 # Static assets (images, index.html)
+```
+Website/
 ├── src/
-│   ├── api/
-│   │   ├── client.js       # Axios Configuration
-│   │   ├── endpoints.js    # API URL Constants
-│   │   └── services/       # API call definitions
-│   ├── assets/             # Images, fonts
-│   ├── components/
-│   │   ├── common/         # Buttons, Inputs, Loaders
-│   │   ├── layout/         # Navbar, Footer
-│   │   ├── home/           # Home-specifc widgets
-│   │   └── menu/           # Menu cards, filters
-│   ├── context/            # Global State (Auth, Cart)
-│   ├── hooks/              # Custom Hooks (useDebounce, useAuth)
-│   ├── pages/              # Route Components
-│   │   ├── auth/           # Login, Register
-│   │   ├── checkout/       # Order process
-│   │   └── profile/        # User settings
-│   ├── styles/             # Global CSS / Variables
-│   ├── utils/              # Formatters, Validators
-│   └── App.js              # Root Component
-└── package.json            # Dependencies
+│   ├── api/            # API Service layers (auth, menu, orders)
+│   ├── components/     # UI Components
+│   │   ├── common/     # Generic components (Button, Input, Loader)
+│   │   ├── layout/     # Header, Footer, Hero
+│   │   └── ...         # Feature-specific components
+│   ├── context/        # Global State (AuthProvider, CartProvider)
+│   ├── hooks/          # Custom React Hooks
+│   ├── pages/          # Route components (Home, Menu, Checkout, Profile)
+│   ├── styles/         # Global styles
+│   ├── utils/          # Helpers and constants
+│   ├── App.js          # Main Component and Routing
+│   └── index.js        # Entry point
+├── public/             # Static assets
+└── package.json        # Dependencies
 ```
 
 ---
 
-## 🧩 Key Features Implementation
+## ✨ Features
 
-### 1. Authentication Flow
--   **Login**: Submits credentials -> Stores `token` & `refreshToken` in `localStorage` -> Updates `AuthContext`.
--   **Session Check**: On app load, `AuthContext` checks `localStorage`. If token exists, sets user as authenticated.
--   **Logout**: Clears storage and resets Context state.
+### 🏠 Home & Discovery
+-   **Hero Section:** Attractive landing with "Order Now" usage.
+-   **Featured Items:** Showcase top-rated or popular dishes.
+-   **About Us:** Information about the restaurant.
 
-### 2. Shopping Cart
--   **Logic**: `CartContext` maintains an array of items.
--   **Persistence**: `useEffect` watches cart state and saves to `localStorage` on change. This persists cart across refreshes.
--   **Calculations**: Auto-calculates Subtotal, Tax, and Grand Total.
+### 🍔 Interactive Menu
+-   **Categories:** Filter by Starters, Mains, Desserts, Drinks, etc.
+-   **Details:** View ingredients, prices, and images.
+-   **Search:** Quickly find specific dishes.
 
-### 3. Order Placement
--   **Checkout**:
-    -   Collects Address, Phone, Payment Method.
-    -   Submits payload to `POST /api/orders`.
-    -   On success: Clears Cart -> Redirects to Order Success Page.
+### 🛒 Shopping Cart & Checkout
+-   **Cart Management:** Add/Remove items, adjust quantities.
+-   **Live Total:** Real-time calculation of costs.
+-   **Checkout:** Secure form for delivery address and payment method selection.
+
+### 👤 User Accounts
+-   **Authentication:** Secure Login and Registration.
+-   **Profile:** Manage personal details.
+-   **Order History:** Track current orders and view past receipts.
+
+### 📅 Table Reservation
+-   **Booking Form:** Select Date, Time, and Party Size.
+-   **Validation:** Ensures booking is within business hours.
 
 ---
 
-## 🛠 Configuration & Setup
+## ⚙️ Setup & Installation
 
-### Environment Variables
-Create `.env` in root:
-```env
-REACT_APP_API_URL=https://localhost:7066/api
-REACT_APP_NAME="Bella Vita"
-```
+1.  **Prerequisites:**
+    -   Node.js (v16 or higher)
+    -   The Backend API must be running.
 
-### Scripts
--   `npm start`: Dev server (Port 3000).
--   `npm build`: Production build to `build/` folder.
--   `npm test`: Run Jest tests.
+2.  **Install Dependencies:**
+    Navigate to the Website folder:
+    ```bash
+    npm install
+    ```
 
-### Dependencies
--   **axios**: HTTP Client.
--   **react-router-dom**: Navigation.
--   **react-icons**: Icon pack.
--   **formik** / **yup**: Form validation (if used).
+3.  **Environment Configuration:**
+    Check `src/api/client.js` or `src/config.js` to ensure it points to the correct Backend URL (`https://localhost:7082`).
+
+4.  **Run Development Server:**
+    ```bash
+    npm start
+    ```
+    The website will launch at `http://localhost:3000`.
+
+5.  **Build for Production:**
+    ```bash
+    npm run build
+    ```
+
+---
+
+## 👤 Author
+
+**Mohamed Essam**
+-   **LinkedIn:** [linkedin.com/in/mohamedessamz/](https://www.linkedin.com/in/mohamedessamz/)
+-   **Email:** [mohamedessamzakariaa@gmail.com](mailto:mohamedessamzakariaa@gmail.com)
