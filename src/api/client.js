@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Get API URL from environment variables or use default
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://bella-vita.runasp.net/api';
+const API_BASE_URL = '/api';
 
 // Create axios instance with default configuration
 const apiClient = axios.create({

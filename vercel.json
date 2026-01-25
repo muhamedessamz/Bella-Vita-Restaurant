@@ -1,0 +1,20 @@
+{
+    "rewrites": [
+        {
+            "source": "/api/:path*",
+            "destination": "http://bella-vita.runasp.net/api/:path*"
+        },
+        {
+            "source": "/orderHub/:path*",
+            "destination": "http://bella-vita.runasp.net/orderHub/:path*"
+        },
+        {
+            "source": "/uploads/:path*",
+            "destination": "http://bella-vita.runasp.net/uploads/:path*"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "/index.html"
+        }
+    ]
+}
