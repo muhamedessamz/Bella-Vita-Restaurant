@@ -1,5 +1,9 @@
 # Bella Vita Restaurant - Customer Website
 
+> [!IMPORTANT]
+> **This is the Customer Website repository.** For the full project documentation, including Backend & Admin Dashboard, please visit the **Main Repository**:
+> 👉 [**Bella Vita Restaurant System**](https://github.com/muhamedessamz/Bella-Vita)
+
 The **Customer Website** is the public-facing interface of the Bella Vita Restaurant. It provides a beautiful, responsive, and interactive experience for customers to explore the menu, book tables, and place food orders online.
 
 ---
@@ -99,8 +103,20 @@ Website/
 
 ---
 
-## 👤 Author
+<div align="center">
 
-**Mohamed Essam**
--   **LinkedIn:** [linkedin.com/in/mohamedessamz/](https://www.linkedin.com/in/mohamedessamz/)
--   **Email:** [mohamedessamzakariaa@gmail.com](mailto:mohamedessamzakariaa@gmail.com)
+<h3>👨‍💻 Developed By</h3>
+
+<p><strong>Mohamed Essam</strong></p>
+
+<p>
+<a href="https://www.linkedin.com/in/mohamedessamz/" target="_blank">
+<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+</a>
+&nbsp;&nbsp;
+<a href="mailto:mohamedessamzakariaa@gmail.com">
+<img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+</a>
+</p>
+
+</div>
